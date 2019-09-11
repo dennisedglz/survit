@@ -1,0 +1,14 @@
+<ion-content padding>
+  <h1 class="logo"><span>S</span>urvIT</h1>
+  <form (ngSubmit)="login()" >
+    <ion-item>
+      <ion-label floating>Usuario</ion-label>
+      <ion-input type="text" [(ngModel)]="username" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="title"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>INICIAR SESIÓN</button>
+  </form>
+</ion-content>

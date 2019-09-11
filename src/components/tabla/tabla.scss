@@ -1,0 +1,101 @@
+tabla {
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 4.5rem;
+    .respuestas {
+        flex: 1 1 auto;
+        justify-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px 0;
+    }
+    p.pregunta {
+        text-align: left;
+        align-self: flex-start;
+        padding: 0 10px;
+        border-left: 2px solid #dc3546;
+        color: color($colors, primary);
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .subpregunta{
+        font-size: 1em;
+        text-align: left;
+        align-self: flex-start;
+        padding: 0 10px;
+        color: color($colors, primary);
+        font-weight: 500;
+        margin: 0;
+    }
+    ion-slide{
+        p.pregunta{
+            color: #dc3546;
+            border: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+    }
+    .item{
+        min-height: inherit;
+        button{
+            padding: 20px 13px;
+        }
+    }
+    .item.item-checkbox .item-inner {
+        border: none;
+        font-size: 2rem;
+        font-family: Roboto;
+        color: #333;
+        .label{
+            white-space: normal;
+        }
+    }
+
+    .checkbox-ios {
+        .checkbox-icon{
+            width: 30px;
+            height: 30px;
+            .checkbox-inner{
+                left: 10px;
+                top: 4px;
+                width: 7px;
+                height: 14px;
+            }
+        }
+    }
+    ion-slides.respuestas-tabla.slides.slides-ios {
+        height: 70%;
+        margin-top: 16px;
+    }
+
+    .list{
+        .item-block{
+            color: #5d5d5d;
+            .item-inner{
+                border-bottom: none;
+                
+            }
+            ion-radio.radio {
+                background-color: #FFF;
+                border-radius: 50%;
+                width: 23px;
+                height: 23px;
+                border: 1px solid #013a6b;
+            }
+            &.item-radio-checked{
+                ion-radio.radio {
+                    background-color: #013a6b;
+                }
+                .radio-inner{
+                    border-color: #FFF;
+                    left: 9px;
+                    top: 4px;
+                }
+            }
+        } 
+    }
+}

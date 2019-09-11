@@ -1,14 +1,65 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-navbar >
+    <ion-title class="logo">
+      <span>S</span>urvIT
     </ion-title>
   </ion-navbar>
+  
 </ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <h1 class="titulo">Mis Encuestas</h1>
+  <ion-list class="lista-encuestas" *ngIf="!appData.loading">
+    <ion-item-sliding #slidingItem *ngFor="let survey of surveys">
+        <ion-item>
+          <div class="card-date">
+              <h2>{{survey.dayDisplay}}</h2>
+              <h4>{{survey.monthDisplay}}</h4>
+          </div>
+          <div class="card-content">
+            <ion-row>
+              <ion-col col-12>
+                <h1 class="card-header">{{survey.name}}</h1>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 class="card-buttons">
+                <button ion-button color="secondary" outline>{{survey.messageDisplay}}</button>
+              </ion-col>
+              
+            </ion-row>
+          </div>
+        </ion-item>
+        <ion-item-options>
+            <div class="card-right-btn" >
+              <button ion-button icon-only (click)="openSurvey(survey)">
+                  <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </div>
+        </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  
+  <div *ngIf="appData.loading" >
+    <skeleton-item width="100%" height="80px"></skeleton-item>
+    <skeleton-item width="100%"  height="80px"></skeleton-item>
+    <skeleton-item width="100%"  height="80px"></skeleton-item>
+    <skeleton-item width="100%"  height="80px"></skeleton-item>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-segment>
+    <!--<ion-segment-button>
+      <ion-icon name="wifi"></ion-icon>
+    </ion-segment-button>-->
+    <ion-segment-button>
+      <ion-icon name="cloud-upload" (click)="saveLocalSurveys()"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button>
+        <ion-icon name="refresh" (click)="getSurveys()"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button>
+      <ion-icon name="log-out" (click)="logout()"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+</ion-footer>

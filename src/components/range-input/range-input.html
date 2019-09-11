@@ -1,0 +1,13 @@
+<ion-content>
+  <p class="pregunta">En una escala de 0 a 10, en donde en el 0 se ubican las personas más pobres y en el 10 se ubican las personas con mayor
+    riqueza...</p>
+  <p class="subpregunta">En donde se ubicaría Usted</p>
+  <div class="respuestas">
+    <ion-item>
+      <ion-range [(ngModel)]="value" min="0" max="10" color="danger" pin="true"></ion-range>
+    </ion-item>
+  </div>
+</ion-content>
+<ion-footer>
+    <button class="full-button-red" ion-button full block color="danger" type="button" (click)="nextSlide()">CONTINUAR</button>
+  </ion-footer>

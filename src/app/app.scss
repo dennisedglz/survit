@@ -14,3 +14,124 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.toolbar-background{
+    background-color: #004e95;
+    padding: 10px 0;
+} 
+.toolbar{
+    min-height: 55px!important;
+    min-height: calc(55px + env(safe-area-inset-top))!important;
+    .logo{
+        font-family: 'Cinzel';
+        color: #FFF!important; 
+        .toolbar-title{
+            color: #FFF!important; 
+            font-size: 2.4rem;
+            margin-top: env(safe-area-inset-top);
+            //margin-top: 15px;
+        } 
+        font-size: 35px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 2rem;
+        span{
+            font-family: "Cinzel Decorative";
+        }
+    }
+    .back-button{
+        color: #FFF;
+    }
+}
+
+.scroll-content .full-button-red{
+    width: calc(100% - 32px);
+    margin: 0 16px;
+}
+
+.full-button-red {
+    height: 2.8em;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    background-color: color($colors, danger);
+    color: #fff;
+    font-weight: 700;
+    font-family: Noto sans;
+    padding: 13px;
+    border-radius: 5px;
+    margin-bottom: 0;
+    position: fixed;
+    bottom: 0;
+}
+
+.bar-button-ios-white {
+    color: #fff;
+}
+
+
+.alert-ios {
+    .alert-button {
+        font-family: Noto sans;
+        border: none;
+        margin: 0 10px 10px;
+        min-width: calc(50% - 20px);
+        border: 2px solid color($colors, primary);
+        color: color($colors, primary);;
+        height: 30px;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 15px;
+        &:last-child{
+            font-weight: 700;
+            border-color: color($colors, danger);
+            color: #FFF;
+            background-color: color($colors, danger);
+        }
+    }
+    .alert-head {
+        color: #013a6b;
+        padding: 5px 16px;
+        margin-bottom: 13px;
+        .alert-title{
+            border-bottom: 2px solid color($colors, danger);
+            padding-bottom: 7px;
+        }
+    }
+    .alert-message {
+        font-size: 14px;
+        color: #333;
+    }
+}
+
+.load-bar {
+    position: relative;
+    margin-top: 0;
+    width: 100%;
+    height: 6px;
+    background-color: color($colors, danger);
+  }
+  .bar {
+    content: "";
+    display: inline;
+    position: absolute;
+    width: 0;
+    height: 100%; 
+    left: 50%;
+    text-align: center;
+  }
+  .bar:nth-child(1) {
+    background-color: color($colors, danger);
+    animation: loading 3s linear infinite;
+  }
+  .bar:nth-child(2) {
+    background-color: color($colors, yellow);
+    animation: loading 3s linear 1s infinite;
+  }
+  .bar:nth-child(3) {
+    background-color: color($colors, lighter-blue);
+    animation: loading 3s linear 2s infinite;
+  }
+  @keyframes loading {
+      from {left: 50%; width: 0;z-index:100;}
+      33.3333% {left: 0; width: 100%;z-index: 10;}
+      to {left: 0; width: 100%;}
+  }
