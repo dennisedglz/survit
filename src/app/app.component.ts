@@ -1,22 +1,86 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoginPage } from './../pages/login/login';
+import { Component, NgZone } from '@angular/core';
+import { AppDataProvider } from '../providers/app-data/app-data';
+import { Network } from '@ionic-native/network';
+import { Platform, Events, AlertController } from 'ionic-angular';
+import { AppConstants } from './app.constants';
 
-import { HomePage } from '../pages/home/home';
+export enum ConnectionStatusEnum {
+  Online,
+  Offline
+}
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
+  status: any = ConnectionStatusEnum.Online;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+  constructor(public readonly zone: NgZone, public events: Events, public appData: AppDataProvider, public network: Network, public platform: Platform, public alertCtrl: AlertController) {
+    this.appData.loading = false;
+    this.platform.ready().then(() => {
+      this.initializeNetworkMonitor();
+      //this.isConnected();
+    });
+   
+    
+  }
+
+  isConnected(): void {
+    this.network.onDisconnect().subscribe(() => {
+        this.status = ConnectionStatusEnum.Offline;
+        console.log("OFFLINE");});
+        this.appData.isConnected = false;
+    this.network.onConnect().subscribe(() => {
+      this.status = ConnectionStatusEnum.Online;
+      console.log("ONLINE");
+      this.appData.isConnected = true;
     });
   }
+
+
+  initializeNetworkMonitor() {
+    console.log("Initialize Network monitor");
+    this.appData.isConnected = this.network.type !== this.network.Connection.NONE;
+    //this.appSharedService.isConnectionModalOpen = false;
+
+    this.events.subscribe(AppConstants.NO_DATA_CONNECTION_EVENT, (event: string) => this.onNoConnectionApiRequest(event));
+
+    // watch network for a disconnection
+    this.network.onDisconnect().subscribe(() => {
+        this.zone.run(() => {
+          console.log("OnDisconnect");
+            this.appData.isConnected = false;
+        });
+    });
+
+    // watch network for a connection
+    this.network.onConnect().subscribe(() => {
+        // We just got a connection but we need to wait briefly
+        // before we determine the connection type. Might need to wait.
+        // prior to doing any api requests as well.
+        const networkTimeout = 3000;console.log("onConnect");
+        setTimeout(() => {
+            this.zone.run(() => {
+                this.appData.isConnected = true;
+            });
+        }, networkTimeout);
+    });
+  }
+
+  onNoConnectionApiRequest(event: string) {
+    const title = 'Not connected to a network';
+    const message = 'It looks like you don\'t have an internet connection. Check your device settings.';
+
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: message,
+      buttons: ['Dismiss']
+    });
+    alert.present();
+}
+
+
 }
 

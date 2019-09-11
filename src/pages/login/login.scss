@@ -1,0 +1,41 @@
+page-login {
+    .logo{
+        font-family: 'Cinzel';
+        color: #FFF;
+        font-size: 75px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 2rem;
+        span{
+            font-family: "Cinzel Decorative";
+        }
+    }
+    .scroll-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: -webkit-linear-gradient(top, #013a6b 0%,#004e95 53%,#207cca 100%); /*Gradiente para login */
+        background-color: #013A6B;
+        background-image: -webkit-linear-gradient(243deg, #013A6B 79%, #004E95 35%);
+        padding-bottom: 16px!important;
+        form{
+            width: 85%;
+            .item{
+                background-color: transparent;
+                padding: 0;
+                color: #FFF;
+                .item-inner{
+                    padding-right: 0;
+                }
+            }
+
+            .button{
+                margin: 2rem 0rem 0;
+                background-color: #dc3546;
+                font-weight: 700;
+            }
+        }
+    }
+
+}

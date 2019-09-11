@@ -34,11 +34,13 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:      #013a6b,
+  secondary:    #32db64,
+  danger:       #dc3546,
+  light:        #f4f4f4,
+  dark:         #222,
+  lighter-blue: #207cca,
+  yellow:       #fdba2c
 );
 
 
@@ -86,3 +88,40 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+@font-face {
+    font-family: 'Cinzel';
+    font-weight: 900;
+    src: url('../assets/fonts/Cinzel-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    font-weight: 700;
+    src: url('../assets/fonts/Cinzel-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    font-weight: 500;
+    src: url('../assets/fonts/Cinzel-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cinzel Decorative';
+    font-weight: 900;
+    src: url('../assets/fonts/CinzelDecorative-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cinzel Decorative';
+    font-weight: 700;
+    src: url('../assets/fonts/CinzelDecorative-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cinzel Decorative';
+    font-weight: 500;
+    src: url('../assets/fonts/CinzelDecorative-Regular.ttf') format('truetype');
+}

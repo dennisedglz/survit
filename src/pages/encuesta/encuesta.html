@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class="logo">
+      <span>S</span>urvIT
+    </ion-title>
+    <!--<ion-buttons end>
+      <button ion-button icon-only color="white">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-slides #slides>
+ 
+    <ion-slide *ngIf="survey.welcome_message != ''" >
+      <just-text [message]="survey.welcome_message" (clickSwipe)="onSwipeEmittedNotAns($event)"></just-text>
+    </ion-slide>
+
+    <ion-slide *ngFor="let question of survey.questions">
+      <simple-input *ngIf="question.category != '' && question.category == 'Simple'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></simple-input>
+
+      <checkbox *ngIf="question.category != '' && question.category == 'Múltiple'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></checkbox>
+
+      <number-input *ngIf="question.category != '' && question.category == 'Número'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></number-input>
+      
+      <tabla *ngIf="question.category != '' && question.category == 'Tabla'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></tabla>
+    </ion-slide>
+
+   <!-- <ion-slide>
+      <number-input (clickSwipe)="onSwipeEmitted($event)"></number-input>
+    </ion-slide>
+
+    <ion-slide>
+      <checkbox2 (clickSwipe)="onSwipeEmitted($event)"></checkbox2>
+    </ion-slide>
+
+    <ion-slide>
+      <range-input (clickSwipe)="onSwipeEmitted($event)"></range-input>
+    </ion-slide>-->
+
+  </ion-slides>
+</ion-content>
