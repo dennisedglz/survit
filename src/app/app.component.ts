@@ -17,7 +17,14 @@ export class MyApp {
   rootPage:any = LoginPage;
   status: any = ConnectionStatusEnum.Online;
 
-  constructor(public readonly zone: NgZone, public events: Events, public appData: AppDataProvider, public network: Network, public platform: Platform, public alertCtrl: AlertController) {
+  constructor(
+    public readonly zone: NgZone, 
+    public events: Events, 
+    public appData: AppDataProvider, 
+    public network: Network, 
+    public platform: Platform, 
+    public alertCtrl: AlertController,
+  ) {
     this.appData.loading = false;
     this.platform.ready().then(() => {
       this.initializeNetworkMonitor();
@@ -79,8 +86,32 @@ export class MyApp {
       buttons: ['Dismiss']
     });
     alert.present();
-}
+  }
+
+  /*initializeIdleMonitor() {
+    //Ten minutes, 600 seconds
+    const idleTimeout = 540;
+    const timeout = 60;
+    this.idle.setIdle(idleTimeout);
+    this.idle.setTimeout(timeout);
+    this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+    this.idle.onTimeoutWarning.subscribe(() => {
+        if (!this.isIdleWarningOpen) {
+            this.isIdleWarningOpen = true;
+            this.idleAlert = this.notificationAlertSrv.customAcceptCancelAlert('Are you still browsing?', 'For your security, we\'ll automatically log you out after ten minutes.',
+                'Stay here', 'Log out', this.stayHereHandler, this.logoutHandler);
+        }
+    });
+    this.idle.onIdleEnd.subscribe(() => {
+        this.appSharedService.idleState = 'No longer idle.';
+    });
+    this.idle.onTimeout.subscribe(() => {
+        this.logout();
+    });
+    this.idle.onIdleStart.subscribe(() => {
+        this.appSharedService.idleState = 'You\'ve gone idle!';
+    });
+  }*/
 
 
 }
-

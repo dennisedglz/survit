@@ -32,7 +32,7 @@ export class NumberInputComponent {
     if(this.value == ""){
       this.valueNeeded();
     }else{
-      this.answer.value = [this.value];
+      this.answer.value = this.value;
       this.clickSwipe.emit(this.answer);
     }
   }

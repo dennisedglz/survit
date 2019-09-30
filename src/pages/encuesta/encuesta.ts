@@ -19,6 +19,8 @@ export class EncuestaPage {
   public answers: Answer[] = [];
   public surveyed: Surveyed;
   public surveys: any;
+  public size: number = 0;
+  public contador: number = 0;
   
   constructor(
     public navCtrl: NavController, 
@@ -33,6 +35,9 @@ export class EncuestaPage {
     this.survey = this.navParams.get("survey");
     console.log(this.survey);
     this.surveyed = new Surveyed();
+    this.size = this.navParams.get("size");
+    this.surveyed = new Surveyed();
+    
   }
 
 
@@ -72,14 +77,16 @@ export class EncuestaPage {
 
   //slides to next item
   goNext(){
-
     if(this.slides.isBeginning()){
       this.recorderProv.startRecording(this.survey.name);
     }
-
-    if(this.slides.isEnd()){
+    this.contador++;
+    this.slides._isEnd
+    
+    if(this.contador > this.size){
       this.finalizarEncuesta();
     }else{
+      console.log(this.slides.slideNext);
       this.slides.lockSwipes(false);
       this.slides.slideNext();
       this.slides.lockSwipes(true);
@@ -162,6 +169,7 @@ export class EncuestaPage {
         this.appData.validSurveyed = true;
       }
     });
+    console.log(this.appData);
   }
 
   saveEncuesta(){
@@ -232,16 +240,25 @@ export class EncuestaPage {
       console.log("local: ",val);
       if(val){
         this.surveys = val;
-        this.surveys.push(this.answers);
+        this.answers.forEach(ans => {
+          this.surveys.push(ans);
+        });
+        console.log("Saving:", this.surveys);
         this.storage.set('surveys', this.surveys);
       }else{
         this.surveys = [];
-        this.surveys.push(this.answers);
+        this.answers.forEach(ans => {
+          this.surveys.push(ans);
+        });
+        console.log("Saving:", this.surveys);
         this.storage.set('surveys', this.surveys);
       }
     }).catch(() => {
       this.surveys = [];
-      this.surveys.push(this.answers);
+      this.answers.forEach(ans => {
+        this.surveys.push(ans);
+      });
+      console.log("Saving:", this.surveys);
       this.storage.set('surveys', this.surveys);
     });
     console.log("Surveys on localstorage");

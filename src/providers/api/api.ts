@@ -36,10 +36,10 @@ export class ApiProvider {
   }
 
   //SaveAnswer
-  saveAnswer(id_survey: string, id_question: string, id_user: string, id_pollster: string, value: string[]) {
-    let valueStr = value.toLocaleString();
+  saveAnswer(id_survey: string, id_question: string, id_user: string, id_pollster: string, value: string) {
+    
     //const url = `${AppConstants.SaveAnswer}`;
-    const url = `${AppConstants.SaveAnswer}?id_survey=${id_survey}&id_question=${id_question}&id_user=${id_user}&id_pollster=${id_pollster}&value=${valueStr}`;
+    const url = `${AppConstants.SaveAnswer}?id_survey=${id_survey}&id_question=${id_question}&id_user=${id_user}&id_pollster=${id_pollster}&value=${value}`;
     var headers = new HttpHeaders().set('Content-Type', 'application/json');
     headers.set('Accept', 'application/json');
     //return this.corePost();

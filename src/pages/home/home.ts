@@ -15,6 +15,10 @@ import { Storage } from '@ionic/storage';
 export class HomePage {
   public surveys: Survey[];
   public surveysToSave: Survey[];
+  public day: string = "";
+  public month: string = "";
+  public message: string = "";
+  public months = ['','Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
   constructor(
     public navCtrl: NavController, 
     public appData: AppDataProvider, 
@@ -27,10 +31,14 @@ export class HomePage {
     this.surveys = [];
     this.surveysToSave = [];
   }
+
+  ionViewWillEnter(){ 
+    
+  }
   
   openSurvey(survey: Survey) {
     this.appData.currentSurvey = survey._id;
-    this.navCtrl.push(EncuestaPage, {'survey': survey} , {animate: false});
+    this.navCtrl.push(EncuestaPage, {'survey': survey, 'size': survey.questions.length} , {animate: false});
   }
 
   getSurveys() {
@@ -42,6 +50,7 @@ export class HomePage {
         this.appData.loading = false;
       console.log(this.surveys);
       this.surveys.forEach(element => {
+        
         console.log("id "+element._id);
       });
     }).catch(err => {
@@ -62,7 +71,12 @@ export class HomePage {
       endate = new Date(e.end_date);
       
       if(today < endate && e.usersId.indexOf(userId) >= 0) {
+        var aux = e.end_date.split('-');
+        var aux2 = e.start_date.split('-');
         this.surveys[i] = e;
+        this.surveys[i].dayDisplay = aux[2]; 
+        this.surveys[i].monthDisplay = this.months[Number(aux[1])];
+        this.surveys[i].messageDisplay = 'Del ' + aux2[2] + ' de ' + this.months[Number(aux2[1])] + ' al ' + aux[2] + ' de ' + this.months[Number(aux[1])];
         i++;
       }
     });
@@ -75,10 +89,96 @@ export class HomePage {
   }
 
   saveLocalSurveys(){
+    this.appData.loading = true;
+    /*let prompt = this.alertCtrl.create({
+      title: 'Under Development',
+      message: "Esta funcionalidad aún está en desarrollo.",
+      buttons: [
+        {
+          text: 'Aceptar',
+          handler: data => {
+          }
+        }
+      ]
+    });
+    prompt.present();*/
     this.storage.get('surveys').then((val) => {
+      console.log("Save Local surveys");
       if(val){
-        console.log("local: ",val);
-        console.log(val)
+        let notSaved = [];
+        val.forEach(ans => {
+          let auxOldID = "";
+          let auxNewID = "";
+          console.log("local element: ");
+          console.log(ans);
+          
+          //GET SURVEYED ID WHEN IT'S NOT VALID
+          if(!ans.validID && auxOldID != ans.id_user){
+            this.api.getSurveyedID().then(res => {
+              if(res){
+                auxOldID = ans.id_user;
+                auxNewID = res;
+                ans.id_user = auxNewID;
+                ans.validID = true;
+              }else{
+                ans.validID = false;
+              }
+            }).catch(err => {
+              ans.validID = false;
+            });
+
+            if(ans.validID){
+              console.log("Saving");
+              this.api.saveAnswer(ans.id_survey.toString(), ans.id_question.toString(), this.appData.surveyedID.toString(), ans.id_pollster.toString(), ans.value).then(res => {
+                if(res){
+                  console.log("SaveAnswer success");
+                  console.log(res);
+      
+                }else{
+                  console.log("SaveAnswer err");
+                  console.log(res);
+                  notSaved.push(ans);
+                  this.errorUploadEncuesta();
+                }
+              }).catch(err => {
+                this.errorUploadEncuesta();
+                notSaved.push(ans);
+              });
+            }else{
+              notSaved.push(ans);
+            }
+          }
+
+
+          if(!ans.validID && auxOldID == ans.id_user){
+            ans.id_user = auxNewID;
+            ans.validID = true;
+            console.log("Saving");
+            this.api.saveAnswer(ans.id_survey.toString(), ans.id_question.toString(), this.appData.surveyedID.toString(), ans.id_pollster.toString(), ans.value).then(res => {
+              if(res){
+                console.log("SaveAnswer success");
+                console.log(res);
+    
+              }else{
+                console.log("SaveAnswer err");
+                console.log(res);
+                notSaved.push(ans);
+                this.errorUploadEncuesta();
+              }
+            }).catch(err => {
+              this.errorUploadEncuesta();
+              notSaved.push(ans);
+            });
+          }
+          
+
+
+          console.log("Not Saved");
+          console.log(notSaved);
+          this.storage.set('surveys', "");
+          this.storage.set('surveys', notSaved);
+          
+        });
       }else{
         console.log("Else val");
         let prompt = this.alertCtrl.create({
@@ -108,8 +208,27 @@ export class HomePage {
             }
           }
         ]
-      });
+      }); 
       prompt.present();
     });
+
+    this.appData.loading = false;
+  }
+
+  errorUploadEncuesta(){
+    console.log("SaveAnswer err");
+   /* let prompt = this.alertCtrl.create({
+      title: 'Lo sentimos',
+      message: "Ocurrió un error al guardar la encuesta, por favor compruebe su conexión e intente más tarde.",
+      buttons: [
+        {
+          text: 'Continuar',
+          handler: data => {
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    prompt.present();*/
   }
 }

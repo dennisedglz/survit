@@ -11,8 +11,8 @@ import { AlertProvProvider } from '../../providers/alert-prov/alert-prov';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  public username: string = 'dennise.dglz@gmail.com';
-  public password: string = '12345';
+  public username: string;
+  public password: string;
 
   constructor(
     public navCtrl: NavController, 

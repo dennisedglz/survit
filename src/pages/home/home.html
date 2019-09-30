@@ -12,8 +12,8 @@
     <ion-item-sliding #slidingItem *ngFor="let survey of surveys">
         <ion-item>
           <div class="card-date">
-              <h2>05</h2>
-              <h4>Abril</h4>
+              <h2>{{survey.dayDisplay}}</h2>
+              <h4>{{survey.monthDisplay}}</h4>
           </div>
           <div class="card-content">
             <ion-row>
@@ -23,7 +23,7 @@
             </ion-row>
             <ion-row>
               <ion-col col-12 class="card-buttons">
-                <button ion-button color="secondary" outline>5 encuestas respondidas</button>
+                <button ion-button color="secondary" outline>{{survey.messageDisplay}}</button>
               </ion-col>
               
             </ion-row>
@@ -49,9 +49,9 @@
 
 <ion-footer>
   <ion-segment>
-    <ion-segment-button>
+    <!--<ion-segment-button>
       <ion-icon name="wifi"></ion-icon>
-    </ion-segment-button>
+    </ion-segment-button>-->
     <ion-segment-button>
       <ion-icon name="cloud-upload" (click)="saveLocalSurveys()"></ion-icon>
     </ion-segment-button>

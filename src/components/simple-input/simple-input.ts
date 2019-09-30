@@ -39,7 +39,7 @@ export class SimpleInputComponent {
     if(this.value == ""){
       this.valueNeeded();
     }else{
-      this.answer.value = [this.value];
+      this.answer.value = this.value;
       console.log("Next Slide ", this.answer);
       this.clickSwipe.emit(this.answer);
     }

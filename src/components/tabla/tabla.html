@@ -5,12 +5,12 @@
 
     <ion-slide *ngFor="let quest of question.answers">
       <p class="pregunta">{{quest}}</p>
-      <div class="respuestas" *ngIf="question.answers2">
+      <ion-list radio-group [(ngModel)]="value" class="respuestas" *ngIf="question.answers2">
         <ion-item *ngFor="let answer of question.answers2" >
           <ion-label>{{answer}}</ion-label>
-          <ion-checkbox></ion-checkbox>
+          <ion-radio [value]="quest + '-' + answer"></ion-radio>
         </ion-item>
-      </div>
+      </ion-list>
     </ion-slide>
 
   </ion-slides>

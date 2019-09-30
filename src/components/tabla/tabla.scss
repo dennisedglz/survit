@@ -71,4 +71,31 @@ tabla {
         height: 70%;
         margin-top: 16px;
     }
+
+    .list{
+        .item-block{
+            color: #5d5d5d;
+            .item-inner{
+                border-bottom: none;
+                
+            }
+            ion-radio.radio {
+                background-color: #FFF;
+                border-radius: 50%;
+                width: 23px;
+                height: 23px;
+                border: 1px solid #013a6b;
+            }
+            &.item-radio-checked{
+                ion-radio.radio {
+                    background-color: #013a6b;
+                }
+                .radio-inner{
+                    border-color: #FFF;
+                    left: 9px;
+                    top: 4px;
+                }
+            }
+        } 
+    }
 }
