@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Multiple } from '../../models/questions';
 import { AlertController } from 'ionic-angular';
+import { Answer } from '../../models/answers';
+import { AppDataProvider } from '../../providers/app-data/app-data';
 
 
 @Component({
@@ -8,18 +11,35 @@ import { AlertController } from 'ionic-angular';
 })
 export class Checkbox2Component {
 
-  @Output() clickSwipe = new EventEmitter<string>();
-  
+  @Output() clickSwipe = new EventEmitter<Answer>();
+  @Input() question : Multiple;
+  public answer: Answer;
   public value: string;
-  constructor( public alertCtrl: AlertController) {
+  public checked: boolean;
+
+  constructor( public alertCtrl: AlertController, public appData: AppDataProvider) {
     this.value = "";
+    this.checked = false;
+    this.answer = new Answer();
+  }
+
+  ngOnInit(){
+    this.answer.id_survey = this.appData.currentSurvey;
+    this.answer.id_question = this.question._id;
+    this.answer.id_user = this.appData.surveyedID;
+    this.answer.id_pollster = this.appData.userID;
   }
 
   nextSlide() {
     if(this.value == ""){
-      this.valueNeeded();
+      //this.valueNeeded();
+      this.answer.value = this.value;
+      console.log(this.value);
+      this.clickSwipe.emit(this.answer);
     }else{
-      this.clickSwipe.emit();
+      this.answer.value = this.value;
+      console.log(this.value);
+      this.clickSwipe.emit(this.answer);
     }
   }
 
@@ -38,5 +58,4 @@ export class Checkbox2Component {
     });
     prompt.present();
   }
-
 }

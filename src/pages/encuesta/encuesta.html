@@ -23,22 +23,13 @@
 
       <checkbox *ngIf="question.category != '' && question.category == 'Múltiple'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></checkbox>
 
+      <checkbox2 *ngIf="question.category != '' && question.category == 'Radios'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></checkbox2>
+
       <number-input *ngIf="question.category != '' && question.category == 'Número'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></number-input>
       
       <tabla *ngIf="question.category != '' && question.category == 'Tabla'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></tabla>
     </ion-slide>
 
-   <!-- <ion-slide>
-      <number-input (clickSwipe)="onSwipeEmitted($event)"></number-input>
-    </ion-slide>
-
-    <ion-slide>
-      <checkbox2 (clickSwipe)="onSwipeEmitted($event)"></checkbox2>
-    </ion-slide>
-
-    <ion-slide>
-      <range-input (clickSwipe)="onSwipeEmitted($event)"></range-input>
-    </ion-slide>-->
 
   </ion-slides>
 </ion-content>

@@ -19,7 +19,7 @@ import { TablaComponent } from './tabla/tabla';
         EndSurveyComponent,
         SimpleInputComponent,
         SkeletonItemComponent,
-    TablaComponent,
+        TablaComponent,
 	],
 	imports: [IonicModule],
 	exports: [
@@ -31,7 +31,7 @@ import { TablaComponent } from './tabla/tabla';
         EndSurveyComponent,
         SimpleInputComponent,
         SkeletonItemComponent,
-    TablaComponent,
+        TablaComponent,
 	]
 })
 export class ComponentsModule {}

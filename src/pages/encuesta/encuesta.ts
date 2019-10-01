@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, Navbar, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, Navbar, AlertController, Platform } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 import { Surveyed, Answer } from '../../models/answers';
 import { ApiProvider } from '../../providers/api/api';
@@ -29,7 +29,8 @@ export class EncuestaPage {
     public appData: AppDataProvider,
     public api: ApiProvider,
     public storage: Storage,
-    public recorderProv:AudioRecorderProvider
+    public recorderProv:AudioRecorderProvider,
+    public platform: Platform
   ) {
     this.initSurveyed();
     this.survey = this.navParams.get("survey");
@@ -61,9 +62,11 @@ export class EncuestaPage {
           },
           {
             text: 'Abandonar',
-            handler: data => {
-              if(this.recorderProv.isRecording){
-                this.recorderProv.stopRecording();
+            handler: data => {  
+              if(this.platform.is('cordova') && this.survey.audio){
+                if(this.recorderProv.isRecording ){
+                  this.recorderProv.stopRecording();
+                }
               }
               console.log('Saved clicked');
               this.navCtrl.pop();
@@ -77,9 +80,7 @@ export class EncuestaPage {
 
   //slides to next item
   goNext(){
-    if(this.slides.isBeginning()){
-      this.recorderProv.startRecording(this.survey.name);
-    }
+    
     this.contador++;
     this.slides._isEnd
     
@@ -123,9 +124,12 @@ export class EncuestaPage {
     });
     console.log("Respuestas de encuesta");
     console.log(this.answers);
-    if(this.recorderProv.isRecording){
-      this.recorderProv.stopRecording();
+    if(this.platform.is('cordova') && this.survey.audio){
+      if(this.recorderProv.isRecording ){
+        this.recorderProv.stopRecording();
+      }
     }
+    
     this.saveEncuesta();
     let prompt = this.alertCtrl.create({
       title: 'La encuesta ha finalizado',
@@ -149,6 +153,14 @@ export class EncuestaPage {
         this.appData.validSurveyed = true;
       }else{
         this.localSurveyed();
+      }
+      
+      console.log("PLATFORM ", this.platform);
+      console.log("AUDIO "+this.survey.audio);
+      if(this.platform.is('cordova') && this.survey.audio){
+        if(!this.recorderProv.isRecording){
+          this.recorderProv.startRecording(this.survey.name);
+        }
       }
     }).catch(err => {
       console.log("error on surveyed");
