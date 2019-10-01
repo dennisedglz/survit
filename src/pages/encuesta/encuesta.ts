@@ -37,14 +37,14 @@ export class EncuestaPage {
     this.surveyed = new Surveyed();
     this.size = this.navParams.get("size");
     this.surveyed = new Surveyed();
-    
   }
-
-
+  
+  
   ionViewDidLoad() {
     this.slides.lockSwipes(true);
     this.slides.pager = false;
     this.setBackButtonAction();
+    this.appData.onSurvey = true;
   }
 
   setBackButtonAction() {
@@ -62,6 +62,7 @@ export class EncuestaPage {
           {
             text: 'Abandonar',
             handler: data => {
+              this.appData.onSurvey = false;
               if(this.recorderProv.isRecording){
                 this.recorderProv.stopRecording();
               }
@@ -86,7 +87,6 @@ export class EncuestaPage {
     if(this.contador > this.size){
       this.finalizarEncuesta();
     }else{
-      console.log(this.slides.slideNext);
       this.slides.lockSwipes(false);
       this.slides.slideNext();
       this.slides.lockSwipes(true);

@@ -9,10 +9,12 @@ export class AppDataProvider {
   public surveyedID: number;
   public currentSurvey: number | string;
   public validSurveyed: boolean;
+  public onSurvey:boolean;
 
   constructor() {
     this.loading = false;
     this.userID = "";
+    this.onSurvey = false;
 
   }
 
