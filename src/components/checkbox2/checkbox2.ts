@@ -31,11 +31,12 @@ export class Checkbox2Component {
   }
 
   nextSlide() {
-    if(this.value == ""){
-      //this.valueNeeded();
-      this.answer.value = this.value;
-      console.log(this.value);
-      this.clickSwipe.emit(this.answer);
+    console.log("Value "+this.value);
+    if(!this.value){
+      this.valueNeeded();
+      //this.answer.value = this.value;
+      //console.log(this.value);
+      //this.clickSwipe.emit(this.answer);
     }else{
       this.answer.value = this.value;
       console.log(this.value);

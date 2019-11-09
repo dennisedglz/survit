@@ -8,7 +8,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
-
+import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AppDataProvider } from '../providers/app-data/app-data';
@@ -75,7 +75,7 @@ import { File } from '@ionic-native/file';
     AlertProvProvider,
     ApiProvider,
     Network,
-
+    Geolocation,
     Media,
     File,
     AudioRecorderProvider,

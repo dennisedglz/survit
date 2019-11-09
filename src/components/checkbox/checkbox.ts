@@ -28,10 +28,10 @@ export class CheckboxComponent {
   }
 
   nextSlide() {
-    if(this.value == ""){
-      //this.valueNeeded();
-      this.answer.value = this.value;
-      this.clickSwipe.emit(this.answer);
+    if(!this.value){
+      this.valueNeeded();
+     // this.answer.value = this.value;
+      //this.clickSwipe.emit(this.answer);
     }else{
       this.answer.value = this.value;
       this.clickSwipe.emit(this.answer);

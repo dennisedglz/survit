@@ -1,9 +1,10 @@
 import { LoginPage } from './../pages/login/login';
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, ViewChild } from '@angular/core';
 import { AppDataProvider } from '../providers/app-data/app-data';
 import { Network } from '@ionic-native/network';
-import { Platform, Events, AlertController } from 'ionic-angular';
+import { Platform, Events, AlertController, Nav } from 'ionic-angular';
 import { AppConstants } from './app.constants';
+import { AudioRecorderProvider } from '../providers/audio-recorder/audio-recorder';
 
 export enum ConnectionStatusEnum {
   Online,
@@ -14,31 +15,36 @@ export enum ConnectionStatusEnum {
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  @ViewChild(Nav) nav: Nav;
+  rootPage: any = LoginPage;
   status: any = ConnectionStatusEnum.Online;
 
   constructor(
-    public readonly zone: NgZone, 
-    public events: Events, 
-    public appData: AppDataProvider, 
-    public network: Network, 
-    public platform: Platform, 
+    public readonly zone: NgZone,
+    public events: Events,
+    public appData: AppDataProvider,
+    public network: Network,
+    public platform: Platform,
     public alertCtrl: AlertController,
+    public recorderProv: AudioRecorderProvider,
   ) {
     this.appData.loading = false;
     this.platform.ready().then(() => {
       this.initializeNetworkMonitor();
+      this.configBackButtonAndroid();
       //this.isConnected();
+
     });
-   
-    
+
+
   }
 
   isConnected(): void {
     this.network.onDisconnect().subscribe(() => {
-        this.status = ConnectionStatusEnum.Offline;
-        console.log("OFFLINE");});
-        this.appData.isConnected = false;
+      this.status = ConnectionStatusEnum.Offline;
+      console.log("OFFLINE");
+    });
+    this.appData.isConnected = false;
     this.network.onConnect().subscribe(() => {
       this.status = ConnectionStatusEnum.Online;
       console.log("ONLINE");
@@ -56,23 +62,23 @@ export class MyApp {
 
     // watch network for a disconnection
     this.network.onDisconnect().subscribe(() => {
-        this.zone.run(() => {
-          console.log("OnDisconnect");
-            this.appData.isConnected = false;
-        });
+      this.zone.run(() => {
+        console.log("OnDisconnect");
+        this.appData.isConnected = false;
+      });
     });
 
     // watch network for a connection
     this.network.onConnect().subscribe(() => {
-        // We just got a connection but we need to wait briefly
-        // before we determine the connection type. Might need to wait.
-        // prior to doing any api requests as well.
-        const networkTimeout = 3000;console.log("onConnect");
-        setTimeout(() => {
-            this.zone.run(() => {
-                this.appData.isConnected = true;
-            });
-        }, networkTimeout);
+      // We just got a connection but we need to wait briefly
+      // before we determine the connection type. Might need to wait.
+      // prior to doing any api requests as well.
+      const networkTimeout = 3000; console.log("onConnect");
+      setTimeout(() => {
+        this.zone.run(() => {
+          this.appData.isConnected = true;
+        });
+      }, networkTimeout);
     });
   }
 
@@ -113,5 +119,36 @@ export class MyApp {
     });
   }*/
 
+
+  configBackButtonAndroid = () => {
+    this.platform.registerBackButtonAction(() => {
+      if (this.platform.is('android') && this.appData.onSurvey) {        
+        let prompt = this.alertCtrl.create({
+          title: '¿Quieres abandonar la encuesta?',
+          message: "Recuerda que una vez que salgas se perderá la información recaudada",
+          buttons: [
+            {
+              text: 'Continuar',
+              handler: data => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'Abandonar',
+              handler: data => {
+                this.appData.onSurvey = false;
+                if (this.recorderProv.isRecording) {
+                  this.recorderProv.stopRecording();
+                }
+                console.log('Saved clicked');
+                this.nav.pop();
+              }
+            }
+          ]
+        });
+        prompt.present();
+      }
+    });
+  }
 
 }

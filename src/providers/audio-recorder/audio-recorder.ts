@@ -31,22 +31,22 @@ export class AudioRecorderProvider {
     public platform: Platform
   ) {
     console.log('AudioRecorderProvider Provider Active');
-    this.date = new Date();
-
-    if (this.platform.is('ios')) {
-      this.directory = this.file.tempDirectory;
-      this.extension = 'm4a';
-    } else if (this.platform.is('android')) {
-      this.directory = this.file.externalRootDirectory;
-      this.extension = '3gp';
-    }
-
-    this.isRecording = false;
-    this.recordName = `survit_${this.date.getDate()}-${this.date.getMonth() + 1}-${this.date.getFullYear()}.${this.extension}`;
   }
 
   startRecording = (surveyName: any) => {
     try {
+      this.date = new Date();
+      if (this.platform.is('ios')) {
+        this.directory = this.file.tempDirectory;
+        this.extension = 'm4a';
+      } else if (this.platform.is('android')) {
+        this.directory = this.file.externalRootDirectory;
+        this.extension = '3gp';
+      }
+  
+      this.isRecording = false;
+      this.recordName = `survit_${this.date.getDate()}-${this.date.getMonth() + 1}-${this.date.getFullYear()}.${this.extension}`;
+
       var fullDirectory = ((this.platform.is('ios')) ? this.directory.replace(/^file:\/\//, '') : this.directory) + 'SurvIT/';
 
       this.file.checkDir(this.directory, 'SurvIT').then((exists) => {

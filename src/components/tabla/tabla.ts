@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { Answer } from '../../models/answers';
 import { Simple, Tabla } from '../../models/questions';
-import { Slides } from 'ionic-angular';
+import { Slides, AlertController } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 
 /**
@@ -23,15 +23,16 @@ export class TablaComponent {
   public answersStr: any;
   public questionsBack: any;
 
-  constructor( public appData: AppDataProvider) {
+  constructor( public appData: AppDataProvider, public alertCtrl: AlertController,) {
     this.value = "";
     this.answer = new Answer();
     this.answersStr = '';
 
   }
 
-  ionViewWillEnter(){
-   
+
+  ionViewDidLoad(){
+   this.slidesTabla.lockSwipes(true);
   }
 
   ngOnInit(){
@@ -53,18 +54,41 @@ export class TablaComponent {
     let number = this.question.answers.indexOf(aux[0]);
     number = Number(number)+1;
     this.value = number.toString()+'-'+aux[1];
-    this.answersStr = this.answersStr == '' ? this.value : this.answersStr + '-' + this.value;
-    this.value = '';
-    console.log("Value");
-    console.log(this.answersStr);
-    if(this.slidesTabla.isEnd()){
-      this.answer.value = this.answersStr;
-      this.clickSwipe.emit(this.answer);
+
+    console.log("Aux "+aux[1]);
+    if(aux[1] == undefined){
+      this.valueNeeded();
     }else{
-      //this.slidesTabla.lockSwipes(false);
-      this.slidesTabla.slideNext();
-      //this.slidesTabla.lockSwipes(true);
+      this.answersStr = this.answersStr == '' ? this.value : this.answersStr + '-' + this.value;
+      this.value = '';
+      console.log("Value");
+      console.log(this.answersStr);
+      if(this.slidesTabla.isEnd()){
+        this.answer.value = this.answersStr;
+        this.clickSwipe.emit(this.answer);
+      }else{
+        this.slidesTabla.lockSwipes(false);
+        this.slidesTabla.slideNext();
+        this.slidesTabla.lockSwipes(true);
     }
+      
+    }
+  }
+
+  valueNeeded(){
+    let prompt = this.alertCtrl.create({
+      title: 'Lo sentimos',
+      message: "Es necesario responder la pregunta para continuar",
+      buttons: [
+        {
+          text: 'Responder',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+      ]
+    });
+    prompt.present();
   }
 
   shuffle(a) {
