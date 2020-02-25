@@ -9,6 +9,7 @@ import { RangeInputComponent } from './range-input/range-input';
 import { SimpleInputComponent } from './simple-input/simple-input';
 import { SkeletonItemComponent } from './skeleton-item/skeleton-item';
 import { TablaComponent } from './tabla/tabla';
+import { DateInputComponent } from './date-input/date-input';
 @NgModule({
 	declarations: [
 		JustTextComponent,
@@ -20,6 +21,7 @@ import { TablaComponent } from './tabla/tabla';
         SimpleInputComponent,
         SkeletonItemComponent,
         TablaComponent,
+        DateInputComponent,
 	],
 	imports: [IonicModule],
 	exports: [
@@ -32,6 +34,7 @@ import { TablaComponent } from './tabla/tabla';
         SimpleInputComponent,
         SkeletonItemComponent,
         TablaComponent,
+        DateInputComponent,
 	]
 })
 export class ComponentsModule {}

@@ -19,13 +19,15 @@
     </ion-slide>
 
     <ion-slide *ngFor="let question of survey.questions">
-      <simple-input *ngIf="question.category != '' && question.category == 'Simple'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></simple-input>
+      <simple-input *ngIf="question.category != '' && (question.category == 'Simple' || question.category == 'Texto')" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></simple-input>
 
       <checkbox *ngIf="question.category != '' && question.category == 'Múltiple'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></checkbox>
 
       <checkbox2 *ngIf="question.category != '' && question.category == 'Radios'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></checkbox2>
 
       <number-input *ngIf="question.category != '' && question.category == 'Número'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></number-input>
+      
+      <date-input *ngIf="question.category != '' && question.category == 'Fecha'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></date-input>
       
       <tabla *ngIf="question.category != '' && question.category == 'Tabla'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></tabla>
     </ion-slide>

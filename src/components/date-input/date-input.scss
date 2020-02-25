@@ -1,0 +1,73 @@
+date-input {
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 4.5rem;
+    .respuestas {
+        flex: 1 1 auto;
+        justify-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    p.pregunta {
+        text-align: left;
+        align-self: flex-start;
+        padding: 0 10px;
+        border-left: 2px solid color($colors, danger);
+        color: color($colors, primary);
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .subpregunta{
+        font-size: 1em;
+        text-align: left;
+        align-self: flex-start;
+        padding: 0 10px;
+        color: color($colors, primary);
+        font-weight: 500;
+        margin: 0;
+    }
+    .item{
+        min-height: inherit;
+        padding: 16px;
+        .item-inner{
+            padding-right: 0 10px;
+            border: 2px solid #888!important;
+            box-sizing: border-box;
+            box-shadow: inherit;
+            border-radius: 7px;
+            .text-input-ios {
+                color: color($colors, primary);
+                margin: 11px 20px 11px 20px;
+                padding: 0;
+                font-size: 2rem;
+                width: calc(100% - 31px);
+            }
+        }
+        button{
+            padding: 20px 13px;
+        }
+    }
+    .item.item-checkbox .item-inner {
+        border: none;
+        font-size: 2rem;
+        font-family: Roboto;
+        color: #333;
+    }
+
+    .checkbox-ios {
+        .checkbox-icon{
+            width: 30px;
+            height: 30px;
+            .checkbox-inner{
+                left: 10px;
+                top: 4px;
+                width: 7px;
+                height: 14px;
+            }
+        }
+    }
+}

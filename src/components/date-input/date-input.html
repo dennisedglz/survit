@@ -1,0 +1,14 @@
+<ion-content>
+  <p class="pregunta" *ngIf="question.name" >{{question.name}}</p>
+  <p class="subpregunta" *ngIf="question.question">{{question.question}}</p>
+  <div class="respuestas">
+    <ion-item>
+      
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="value"></ion-datetime>
+    </ion-item>
+  </div>
+</ion-content>
+  
+<ion-footer>
+  <button class="full-button-red" ion-button full block color="danger" type="button" (click)="nextSlide()">CONTINUAR</button>
+</ion-footer>
