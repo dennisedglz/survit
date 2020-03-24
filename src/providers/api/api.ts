@@ -18,11 +18,11 @@ export class ApiProvider {
     return this.http.post<T>(`${url}`, body, {headers}).toPromise<T>();
   }
 
-  login(email: string, password: string) {
-    const url = `${AppConstants.LoginURL}?email=${email}&password=${password}`;
+  login(username: string, password: string) {
+    const url = `${AppConstants.LoginURL}?username=${username}&password=${password}`;
     var headers = new HttpHeaders().set('Content-Type', 'application/json');
     headers.set('Accept', 'application/json');
-    return this.corePost<string[]>(url, {}, headers);
+    return this.coreGet<string[]>(url, headers);
 
   }
 

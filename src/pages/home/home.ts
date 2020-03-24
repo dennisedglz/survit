@@ -1,6 +1,6 @@
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, MenuController } from 'ionic-angular';
 import { EncuestaPage } from '../encuesta/encuesta';
 import { AppDataProvider } from './../../providers/app-data/app-data';
 import { AlertProvProvider } from '../../providers/alert-prov/alert-prov';
@@ -25,7 +25,8 @@ export class HomePage {
     public api: ApiProvider,
     public alertPrv: AlertProvProvider,
     public alertCtrl: AlertController,
-    public storage: Storage
+    public storage: Storage,
+    private menu: MenuController
   ) {
     this.getSurveys();
     this.surveys = [];
@@ -68,15 +69,21 @@ export class HomePage {
     let i = 0;
    
     encuestas.forEach(e => {
-      endate = new Date(e.end_date);
-      
-      if(today < endate && e.usersId.indexOf(userId) >= 0) {
+      endate = new Date('06/20/2020');
+      console.log(endate);
+      console.log(today);
+
+      //if(today < endate && e.usersId.indexOf(userId) >= 0) {
+      if(today < endate) {
+        console.log("valid");
         var aux = e.end_date.split('-');
         var aux2 = e.start_date.split('-');
         this.surveys[i] = e;
         this.surveys[i].dayDisplay = aux[2]; 
         this.surveys[i].monthDisplay = this.months[Number(aux[1])];
-        this.surveys[i].messageDisplay = 'Del ' + aux2[2] + ' de ' + this.months[Number(aux2[1])] + ' al ' + aux[2] + ' de ' + this.months[Number(aux[1])];
+        this.surveys[i].readStartDate = 'Inicia: ' + aux2[2] + ' de ' + this.months[Number(aux2[1])] + ' ' + aux2[0];
+        console.log(this.surveys[i].readStartDate);
+        this.surveys[i].readEndDate = 'Finaliza: ' + aux[2] + ' de ' + this.months[Number(aux[1])] + ' ' + aux[0];
         i++;
       }
     });
@@ -230,5 +237,9 @@ export class HomePage {
       ]
     });
     prompt.present();*/
+  }
+
+  openMenu() {
+    this.menu.open();
   }
 }

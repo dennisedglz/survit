@@ -1,31 +1,56 @@
 <ion-header>
-  <ion-navbar >
-    <ion-title class="logo">
-      <span>S</span>urvIT
+  <ion-navbar>
+    <ion-title>
+      Mis Encuestas
     </ion-title>
+
+    <ion-buttons end>
+      <button color="light" ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-  
+
 </ion-header>
+
+
+
+<ion-nav #mycontent [root]="rootPage">
+  <ion-menu [content]="mycontent">
+    <ion-content>
+      <ion-list>
+        <ion-item menuClose detail-none>Close Menu</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu></ion-nav>
 <ion-content padding>
-  <h1 class="titulo">Mis Encuestas</h1>
   <ion-list class="lista-encuestas" *ngIf="!appData.loading">
     <ion-item-sliding #slidingItem *ngFor="let survey of surveys">
         <ion-item>
-          <div class="card-date">
-              <h2>{{survey.dayDisplay}}</h2>
-              <h4>{{survey.monthDisplay}}</h4>
-          </div>
           <div class="card-content">
             <ion-row>
               <ion-col col-12>
-                <h1 class="card-header">{{survey.name}}</h1>
+                <h1 class="card-header">{{survey.title}}</h1>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col col-12 class="card-buttons">
-                <button ion-button color="secondary" outline>{{survey.messageDisplay}}</button>
+              <ion-col col-12 class="surv-dates">
+                <p>{{survey.readStartDate}}</p>
+                <p>{{survey.readEndDate}}</p>
               </ion-col>
-              
+            </ion-row>
+            <ion-row class="card-buttons">
+              <ion-col col-6>
+                <button class="circle-button" ion-button icon-only>
+                  <ion-icon name="information"></ion-icon>
+                </button>
+                <button class="circle-button" ion-button icon-only>
+                  <ion-icon name="cloud-upload"></ion-icon>
+                </button>
+              </ion-col>
+              <ion-col col-6>
+                <button ion-button type="submit" block (click)="openSurvey(survey)">APLICAR</button>
+              </ion-col>
             </ion-row>
           </div>
         </ion-item>

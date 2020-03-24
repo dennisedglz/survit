@@ -20,6 +20,8 @@ export class CheckboxComponent {
      this.answer = new Answer();
   }
 
+  ionViewWillEnter
+
   ngOnInit(){
     this.answer.id_survey = this.appData.currentSurvey;
     this.answer.id_question = this.question._id;
@@ -52,5 +54,22 @@ export class CheckboxComponent {
       ]
     });
     prompt.present();
+  }
+
+  updateCheckbox($event, answer) {
+    console.log("CHECKBOX ");
+    console.log($event);
+    if($event.checked) {
+      console.log("is checked");
+      if(this.value.indexOf(answer) == -1){
+        console.log("doesnt exist");
+        this.value = this.value + this.answer + ', '
+        console.log(this.value);
+      } 
+    }
+  }
+
+  exists() {
+    
   }
 }

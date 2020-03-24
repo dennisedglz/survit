@@ -4,10 +4,11 @@
     <div class="respuestas" *ngIf="question.answers">
       <ion-item *ngFor="let answer of question.answers; index as i;">
         <ion-label>{{answer}}</ion-label>
-        <ion-checkbox [(ngModel)]="question.answers[i]"></ion-checkbox>
+        <ion-checkbox color="secondary" (ionChange)="updateCheckbox($event, answer)"></ion-checkbox>
       </ion-item>
+
     </div>
 </ion-content>
 <ion-footer>
-    <button class="full-button-red" ion-button full block color="danger" type="button" (click)="nextSlide()">CONTINUAR</button>
+    <button class="full-button-red" ion-button full block color="secondary" type="button" (click)="nextSlide()">CONTINUAR</button>
 </ion-footer>

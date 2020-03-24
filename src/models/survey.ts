@@ -11,4 +11,6 @@ export class Survey {
     public dayDisplay: string = "";
     public monthDisplay: string = "";
     public messageDisplay: string = "";
+    public readStartDate: string = "";
+    public readEndDate: string = "";
 }

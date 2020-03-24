@@ -19,19 +19,17 @@ just-text {
         width: 100%;
         font-family: Noto sans;
         font-weight: 700;
-        color: color($colors, primary);
+        color: color($colors, secondary);
         font-size: 1.7em;
-        border-left: 2px solid #dc3546;
-        padding: 0 10px;
+        padding: 0;
     }
     p.main-label{
         text-align: left;
         width: 100%;
         font-family: Noto sans;
         font-weight: 700;
-        color: color($colors, primary);
+        color: color($colors, secondary);
         font-size: 1.2em;
-        border-left: 2px solid #dc3546;
-        padding: 0 10px;
+        padding: 0;
     }
 }

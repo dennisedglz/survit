@@ -7,14 +7,7 @@ page-home {
     
     .scroll-content{
         background-color: #f9f9f9;
-        h1.titulo {
-            font-family: 'Cinzel';
-            font-weight: 700;
-            padding: 10px 15px 10px;
-            display: block;
-            color: #013a6b;
-            font-size: 2rem;
-        }
+        
         padding-right: 0;
         .lista-encuestas{
             ion-item-sliding.item-wrapper {
@@ -41,27 +34,40 @@ page-home {
                         box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1);
                         box-sizing: border-box;
                         .card-content{
-                            padding: 9px 10px 8px;
+                            padding: 20px 10px;
                             width: 100%;
-                            border-radius: 0 10px 10px 0;
+                            border-radius: 10px;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             background-color: white;
-                           // border-left: 4px solid #207cca;
                             ion-col.col {
                                 padding: 0 5px;
                             }
-                            .card-buttons{
-                                padding: 0;
+                            .surv-dates{
+                                padding: 10px 0;
+                                p{
+                                    font-size: 12px;
+                                    color: #555;
+                                }
                             }
-                            .button-outline {
-                                font-size: 16px;
-                                height: inherit;
-                                padding: 5px 0; 
-                                text-transform: inherit;
-                                border: none;
-                                color: #555;
+                            .card-buttons {
+                                margin-top: 15px;
+                                button.button {
+                                    height: auto; 
+                                    min-height: 3rem;
+                                }
+                                .circle-button {
+                                    width: 3rem;
+                                    color: #FFF;
+                                    background-color: #00A4B8;
+                                    font-size: 1.1rem;
+                                    border-radius: 50%;
+                                    ion-icon.icon.icon-ios.ion-ios-information, ion-icon.icon.md-information
+                                    {
+                                        font-size: 4rem!important;
+                                    }
+                                }
                             }
                         }
                         .card-header {
@@ -112,12 +118,16 @@ page-home {
     }
 
     ion-segment.segment{
-        background-color: #004e95;
+        background-color: color($colors, primary);
         .segment-button{
             padding: 10px 0 5px;
             height: inherit;
             color: white;
         }
+    }
+
+    .bar-buttons.bar-button-menutoggle {
+        color: #FFF!important;
     }
     
 }

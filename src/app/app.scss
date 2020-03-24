@@ -15,12 +15,15 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 .toolbar-background{
-    background-color: #004e95;
+    background-color: color($colors, purple);
     padding: 10px 0;
 } 
 .toolbar{
     min-height: 55px!important;
     min-height: calc(55px + env(safe-area-inset-top))!important;
+    .toolbar-title {
+        color: #FFF;
+    }
     .logo{
         font-family: 'Cinzel';
         color: #FFF!important; 
@@ -43,6 +46,10 @@
     }
 }
 
+.toolbar-title-ios, .toolbar-title {
+    color: #FFF!important;
+}
+
 .scroll-content .full-button-red{
     width: calc(100% - 32px);
     margin: 0 16px;
@@ -52,7 +59,7 @@
     height: 2.8em;
     font-size: 1.6rem;
     text-transform: uppercase;
-    background-color: color($colors, danger);
+    background-color: color($colors, primary);
     color: #fff;
     font-weight: 700;
     font-family: Noto sans;
@@ -74,26 +81,26 @@
         border: none;
         margin: 0 10px 10px;
         min-width: calc(50% - 20px);
-        border: 2px solid color($colors, primary);
-        color: color($colors, primary);;
+        border: 2px solid color($colors, secondary);
+        color: color($colors, secondary);
         height: 30px;
         border-radius: 5px;
         font-weight: 700;
         font-size: 15px;
         &:last-child{
             font-weight: 700;
-            border-color: color($colors, danger);
+            border-color: color($colors, secondary);
             color: #FFF;
-            background-color: color($colors, danger);
+            background-color: color($colors, secondary);
         }
     }
     .alert-head {
-        color: #013a6b;
+        color: color($colors, primary);
         padding: 5px 16px;
         margin-bottom: 13px;
         .alert-title{
-            border-bottom: 2px solid color($colors, danger);
             padding-bottom: 7px;
+            text-transform: uppercase;
         }
     }
     .alert-message {

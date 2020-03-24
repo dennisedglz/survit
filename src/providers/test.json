@@ -1,0 +1,719 @@
+[
+   {
+      "_id":"5e626f1df4eff60017cbb008",
+      "title":"Estudio ExxonMobil (2019)",
+      "message":"Buenos días/tardes, mi nombre es... y represento a Lpsos, una empresa que se dedica a la realización de estudios de mercado y opinión pública. Actualmente estamos realizando un estudio de mercado y estamos entrevistando a personas como usted. Le garantizo que las respuestas que nos proporcione serán confidenciales y que se utilizarán únicamente con fines estadísticos.",
+      "start_date":"20/20/2020",
+      "end_date":"20/20/2020",
+      "picture":true,
+      "audio":true,
+      "location":true,
+      "questions":[
+         {
+            "options":[
+
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+               {
+                  "rules":[
+
+                  ],
+                  "condition":[
+
+                  ],
+                  "_id":"5e626f1df4eff60017cbb00a"
+               }
+            ],
+            "_id":"5e626f1df4eff60017cbb009",
+            "questionID":"1",
+            "composed":[
+
+            ]
+         },
+         {
+            "options":[
+
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+               {
+                  "rules":[
+
+                  ],
+                  "condition":[
+
+                  ],
+                  "_id":"5e626f1df4eff60017cbb00c"
+               }
+            ],
+            "_id":"5e626f1df4eff60017cbb00b",
+            "questionID":"4",
+            "composed":[
+
+            ]
+         }
+      ],
+      "__v":0
+   },
+   {
+      "_id":"5e67666fca346800176ccd12",
+      "title":"Estudio ExxonMobil (2019)",
+      "message":"Buenos días/tardes, mi nombre es... y represento a Lpsos, una empresa que se dedica a la realización de estudios de mercado y opinión pública. Actualmente estamos realizando un estudio de mercado y estamos entrevistando a personas como usted. Le garantizo que las respuestas que nos proporcione serán confidenciales y que se utilizarán únicamente con fines estadísticos.",
+      "start_date":"20/20/2020",
+      "end_date":"20/20/2020",
+      "picture":true,
+      "audio":true,
+      "location":true,
+      "questions":[
+         {
+            "options":[
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd14",
+                  "text":"Manufactura de productos de plástico"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd15",
+                  "text":"Minería"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd16",
+                  "text":"Construcción/ Acarreo de materiales/ Renta de maquinaria"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd17",
+                  "text":"Automotriz"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd18",
+                  "text":"Manufactura en general"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd19",
+                  "text":"Otro",
+                  "action":"textarea"
+               }
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+               {
+                  "rules":[
+                     {
+                        "_id":"5e67666fca346800176ccd1b",
+                        "value":"Agradezca y termine entrevista",
+                        "action":"survey finish"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd1a",
+                  "type":1
+               }
+            ],
+            "_id":"5e67666fca346800176ccd13",
+            "questionID":"F1",
+            "text":"¿La empresa para la cual trabaja tiene entre sus principales actividades alguna de las siguientes industrias?",
+            "help":"Espontáneo RU",
+            "type":"radio"
+         },
+         {
+            "options":[
+
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+               {
+                  "rules":[
+                     {
+                        "_id":"5e67666fca346800176ccd1e",
+                        "value":"0 empleados/ persona física o profesionista independiente",
+                        "action":"== 0"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd1f",
+                        "value":"1 a 10 empreados",
+                        "action":" >= 1 && 10 >="
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd20",
+                        "value":"1 a 10 empreados",
+                        "action":" >= 1 && 10 >="
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd1d",
+                  "type":3
+               }
+            ],
+            "_id":"5e67666fca346800176ccd1c",
+            "questionID":"F4",
+            "text":"Incluéndose usted, ¿con cuántos empleados cuenta aproximadamente la empresa en la que trabaja?",
+            "help":"Espontáneo RU",
+            "type":"number"
+         },
+         {
+            "options":[
+
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+
+            ],
+            "_id":"5e67666fca346800176ccd21",
+            "questionID":"C1",
+            "text":"Incluyéndose usted, ¿con cuántos empleados cuenta aproximadamente la empresa en la que trabaja?",
+            "help":"Espontáneo RU",
+            "type":"text"
+         },
+         {
+            "options":[
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd23",
+                  "text":"Carbón"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd24",
+                  "text":"Mineral no metálico"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd25",
+                  "text":"Mineral metálico"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd26",
+                  "text":"Otro",
+                  "action":"textarea"
+               }
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+
+            ],
+            "_id":"5e67666fca346800176ccd22",
+            "questionID":"C2",
+            "text":"¿Qué tipo de operación minera lleva acabo la empresa?",
+            "help":"Espontáneo RM",
+            "type":"radio"
+         },
+         {
+            "options":[
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd28",
+                  "text":"Equipo fijo industrial/ estacionario (líneas de producción, ensambladoras, etc)."
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd29",
+                  "text":"Equipo móvil o pesado fuera de carretera (excavadoras, camiones, retroexcavadoras, cargadores, etc)."
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd2a",
+                  "text":"Ambos tipos de equipos (ESPONTÁNEA)"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd2b",
+                  "text":"Ninguno de los dos (ESPONTÁNEA)"
+               }
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+
+            ],
+            "_id":"5e67666fca346800176ccd27",
+            "questionID":"C4",
+            "text":"¿Para qué tipo de equipos utiliza lubricantes hidráulicos la empresa donde trabaja?",
+            "help":"Leer Opciones RU",
+            "type":"radio"
+         },
+         {
+            "options":[
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd2d",
+                  "text":"Mobil"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd2e",
+                  "text":"Shell"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd2f",
+                  "text":"Total"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd30",
+                  "text":"Chevron"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd31",
+                  "text":"Mexicana de Lubricantes"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd32",
+                  "text":"Akron"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd33",
+                  "text":"Raloy"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd34",
+                  "text":"Quaker State"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd35",
+                  "text":"Roshfrans"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd36",
+                  "text":"Castrol"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd37",
+                  "text":"Otro",
+                  "action":"textarea"
+               }
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+               {
+                  "rules":[
+                     {
+                        "_id":"5e67666fca346800176ccd39",
+                        "value":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd3a",
+                        "value":"3"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd38",
+                  "questionID":"C4"
+               }
+            ],
+            "conditions":[
+
+            ],
+            "_id":"5e67666fca346800176ccd2c",
+            "questionID":"P1",
+            "text":"¿Me puede decir todas las marcas de lubricantes hidráulicos que conoce para equipo físico industrial/ estacionario?",
+            "help":"Espontánea RM",
+            "type":"checkbox"
+         },
+         {
+            "options":[
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd41",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd42",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd40",
+                  "text":"Mobil"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd44",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd45",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd43",
+                  "text":"Shell"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd47",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd48",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd46",
+                  "text":"Total"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd4a",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd4b",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd49",
+                  "text":"Chevron"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd4d",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd4e",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd4c",
+                  "text":"Mexicana de Lubricantes"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd50",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd51",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd4f",
+                  "text":"Akron"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd53",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd54",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd52",
+                  "text":"Raloy"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd56",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd57",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd55",
+                  "text":"Quaker State"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd59",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd5a",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd58",
+                  "text":"Roshfrans"
+               },
+               {
+                  "values":[
+                     {
+                        "_id":"5e67666fca346800176ccd5c",
+                        "text":"1"
+                     },
+                     {
+                        "_id":"5e67666fca346800176ccd5d",
+                        "text":"2"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd5b",
+                  "text":"Castrol"
+               }
+            ],
+            "headers":[
+               {
+                  "_id":"5e67666fca346800176ccd3c",
+                  "text":"COD"
+               },
+               {
+                  "_id":"5e67666fca346800176ccd3d",
+                  "text":""
+               },
+               {
+                  "_id":"5e67666fca346800176ccd3e",
+                  "text":"Si conoce"
+               },
+               {
+                  "_id":"5e67666fca346800176ccd3f",
+                  "text":"No conoce"
+               }
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+
+            ],
+            "_id":"5e67666fca346800176ccd3b",
+            "questionID":"P2",
+            "text":"De las siguientes marcas de lubricantes hidráulicos para equipo fijo industrial/ estacionario ¿cuáles conoce?",
+            "help":"Espontánea RM",
+            "type":"table"
+         },
+         {
+            "options":[
+
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+               {
+                  "rules":[
+                     {
+                        "_id":"5e67666fca346800176ccd60",
+                        "value":"true"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd5f",
+                  "questionID":"P1",
+                  "type":2
+               },
+               {
+                  "rules":[
+                     {
+                        "_id":"5e67666fca346800176ccd62",
+                        "value":"true"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd61",
+                  "questionID":"P2",
+                  "type":2
+               }
+            ],
+            "_id":"5e67666fca346800176ccd5e",
+            "questionID":"P3",
+            "text":"¿Qué marca o marcas de lubricantes hidráulicos para equipo fijo industrial/ estacionario ha usado en alguna ocasión, aunque ya no los utilice?",
+            "help":"Leer Opciones RU",
+            "type":"checkbox"
+         },
+         {
+            "options":[
+
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+               {
+                  "rules":[
+                     {
+                        "_id":"5e67666fca346800176ccd65",
+                        "value":"true"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd64",
+                  "questionID":"P1",
+                  "type":2
+               },
+               {
+                  "rules":[
+                     {
+                        "_id":"5e67666fca346800176ccd67",
+                        "value":"true"
+                     }
+                  ],
+                  "_id":"5e67666fca346800176ccd66",
+                  "questionID":"P2",
+                  "type":2
+               }
+            ],
+            "_id":"5e67666fca346800176ccd63",
+            "questionID":"P4",
+            "text":"Actualmente, ¿qué marcas de lubricantes hidráulicos para equipofijo industrial/ estacionario utilizan en su empresa?",
+            "help":"Espontánea RM",
+            "type":"checkbox"
+         },
+         {
+            "options":[
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd69",
+                  "text":"Precio"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd6a",
+                  "text":"Calidad/ Eficiencia"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd6b",
+                  "text":"Durabilidad"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd6c",
+                  "text":"Marca"
+               },
+               {
+                  "values":[
+
+                  ],
+                  "_id":"5e67666fca346800176ccd6d",
+                  "text":"Servicios Adicionales"
+               }
+            ],
+            "headers":[
+
+            ],
+            "compounds":[
+
+            ],
+            "conditions":[
+
+            ],
+            "_id":"5e67666fca346800176ccd68",
+            "questionID":"P5",
+            "text":"De los cinco atributos que le voy a mencionar, ¿ordénelos por favor de mayor a menor importancia con respecto a lo que toma en cuenta para decidir adquirir o comprar un lubricante hidráulico?",
+            "help":"Leer Opciones, Ordena las respuestas",
+            "type":"order"
+         }
+      ],
+      "__v":0
+   }
+]

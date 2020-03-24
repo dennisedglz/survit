@@ -67,15 +67,9 @@ export class EncuestaPage {
 
   goOut(){
     let prompt = this.alertCtrl.create({
-      title: '¿Quieres abandonar la encuesta?',
-      message: "Recuerda que una vez que salgas se perderá la información recaudada",
+      title: 'Abandonar Encuesta',
+      message: "¿Está seguro que desea abandonar la encuesta? Una vez que salga se perderá la información recopilada",
       buttons: [
-        {
-          text: 'Continuar',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
         {
           text: 'Abandonar',
           handler: data => {  
@@ -87,7 +81,13 @@ export class EncuestaPage {
             console.log('Saved clicked');
             this.navCtrl.pop();
           }
-        }
+        },
+        {
+          text: 'Continuar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
       ]
     });
     prompt.present();
@@ -181,11 +181,23 @@ export class EncuestaPage {
       message: "Gracias por su tiempo. La encuesta ha terminado.",
       buttons: [
         {
-          text: 'Continuar',
-          handler: data => {
+          text: 'Cerrar',
+          handler: data => {  
+            if(this.platform.is('cordova') && this.survey.audio){
+              if(this.recorderProv.isRecording ){
+                this.recorderProv.stopRecording();
+              }
+            }
+            console.log('Saved clicked');
             this.navCtrl.pop();
           }
-        }
+        },
+        /*{
+          text: 'Aplicar de Nuevo',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },*/
       ]
     });
     prompt.present();
