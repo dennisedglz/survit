@@ -14,3 +14,25 @@ export class Survey {
     public readStartDate: string = "";
     public readEndDate: string = "";
 }
+
+export class SurveyResponse {
+    public text;
+    public data: Array<any> = [];
+}
+
+export class SurveyData  {
+    isDeleted: boolean;
+    _id: string;
+    title: string;
+    message: string;
+    creation_date: string;
+    creation_time: string;
+    start_date: string;
+    end_date: string;
+    picture: boolean;
+    audio: boolean;
+    location: boolean;
+    questions: Array<any> = [];
+    users: Array<any> = [];
+    __v: number;
+}

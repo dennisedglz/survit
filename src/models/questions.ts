@@ -24,3 +24,15 @@ export class Tabla {
     public answers2: string [];
     public order: number = 0;
 }
+
+export class Question {
+    options: Array<string> = [];
+    headers: Array<string> = [];
+    compounds;
+    conditions; 
+    _id: string = '';
+    questionID: string = '';
+    text: string = '';
+    help: string = '';
+    type: string = '';
+}

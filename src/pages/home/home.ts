@@ -4,7 +4,7 @@ import { NavController, AlertController, MenuController } from 'ionic-angular';
 import { EncuestaPage } from '../encuesta/encuesta';
 import { AppDataProvider } from './../../providers/app-data/app-data';
 import { AlertProvProvider } from '../../providers/alert-prov/alert-prov';
-import { Survey } from '../../models/survey';
+import { Survey, SurveyResponse } from '../../models/survey';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
 
@@ -13,7 +13,8 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  public surveys: Survey[];
+  public surveys = [];
+  //public surveys: SurveyResponse;
   public surveysToSave: Survey[];
   public day: string = "";
   public month: string = "";
@@ -44,16 +45,9 @@ export class HomePage {
 
   getSurveys() {
     this.appData.loading = true;
-    this.api.getSurveys()
-    .then(data => {
-        //this.surveys = data;
-        this.filtrarEncuestas(data);
-        this.appData.loading = false;
-      console.log(this.surveys);
-      this.surveys.forEach(element => {
-        
-        console.log("id "+element._id);
-      });
+    this.api.getSurveys().then(data => {
+      this.filtrarEncuestas(data.data);
+      this.appData.loading = false;
     }).catch(err => {
       this.alertPrv.errorConexion();
       console.log("There was an error");
@@ -62,31 +56,22 @@ export class HomePage {
     });  
   }
 
-  filtrarEncuestas(encuestas: Survey[]) {
-    let userId = this.appData.userID;
-    let today = new Date();
-    let endate;
-    let i = 0;
-   
-    encuestas.forEach(e => {
-      endate = new Date('06/20/2020');
-      console.log(endate);
-      console.log(today);
+  filtrarEncuestas(encuestas) {
 
-      //if(today < endate && e.usersId.indexOf(userId) >= 0) {
-      if(today < endate) {
-        console.log("valid");
-        var aux = e.end_date.split('-');
-        var aux2 = e.start_date.split('-');
-        this.surveys[i] = e;
-        this.surveys[i].dayDisplay = aux[2]; 
-        this.surveys[i].monthDisplay = this.months[Number(aux[1])];
-        this.surveys[i].readStartDate = 'Inicia: ' + aux2[2] + ' de ' + this.months[Number(aux2[1])] + ' ' + aux2[0];
-        console.log(this.surveys[i].readStartDate);
-        this.surveys[i].readEndDate = 'Finaliza: ' + aux[2] + ' de ' + this.months[Number(aux[1])] + ' ' + aux[0];
-        i++;
-      }
-    });
+    if(!encuestas.isDeleted) {
+      let userId = this.appData.userID;
+      let today = new Date();
+      let endate;
+      let i = 0;
+
+      encuestas.forEach(e => {
+        endate = new Date(e.end_date);
+        if(today>endate) {
+          this.surveys[i] = e;
+          i++;
+        }
+      });
+    }
   }
 
   logout() {

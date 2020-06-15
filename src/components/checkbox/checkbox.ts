@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { Multiple } from '../../models/questions';
+import { Multiple, Question } from '../../models/questions';
 import { AlertController } from 'ionic-angular';
 import { Answer } from '../../models/answers';
 import { AppDataProvider } from '../../providers/app-data/app-data';
@@ -11,31 +11,42 @@ import { AppDataProvider } from '../../providers/app-data/app-data';
 export class CheckboxComponent {
 
   @Output() clickSwipe = new EventEmitter<Answer>();
-  @Input() question : Multiple;
+  @Input() question : Question;
+  @Input() compounds: Array<string> = [];
   public answer: Answer;
   public value: string;
+  public values: Array<string> = [];
 
   constructor( public alertCtrl: AlertController, public appData: AppDataProvider) {
     this.value = "";
      this.answer = new Answer();
   }
 
-  ionViewWillEnter
+  ionViewWillEnter() {
+    console.log('Checking before loading');
+    if(this.question.compounds.length > 0) {
+      console.log('this.question.compounds ', this.question.compounds);
+    } else {
+
+    }
+  }
+
 
   ngOnInit(){
+    console.log(this.question);
     this.answer.id_survey = this.appData.currentSurvey;
     this.answer.id_question = this.question._id;
+    this.answer.questionID = this.question.questionID;
     this.answer.id_user = this.appData.surveyedID;
     this.answer.id_pollster = this.appData.userID;
   }
 
   nextSlide() {
-    if(!this.value){
+    if(!this.values || this.values.length <= 0){
       this.valueNeeded();
-     // this.answer.value = this.value;
-      //this.clickSwipe.emit(this.answer);
     }else{
-      this.answer.value = this.value;
+      console.log('Answer ', this.answer);
+      this.answer.value = JSON.stringify(this.values);
       this.clickSwipe.emit(this.answer);
     }
   }
@@ -57,19 +68,17 @@ export class CheckboxComponent {
   }
 
   updateCheckbox($event, answer) {
-    console.log("CHECKBOX ");
-    console.log($event);
     if($event.checked) {
+      this.values.push(answer);
       console.log("is checked");
-      if(this.value.indexOf(answer) == -1){
-        console.log("doesnt exist");
-        this.value = this.value + this.answer + ', '
-        console.log(this.value);
-      } 
+    }else {
+      this.removeAns(answer);
     }
   }
 
-  exists() {
-    
+  removeAns(answer){
+    this.values.forEach( (item, index) => {
+      if(item === answer) this.values.splice(index,1);
+    });
   }
 }

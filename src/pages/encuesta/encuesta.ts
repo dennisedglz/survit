@@ -38,6 +38,7 @@ export class EncuestaPage {
   ) {
     this.initSurveyed();
     this.survey = this.navParams.get("survey");
+    console.log('ENCUESTA');
     console.log(this.survey);
     this.surveyed = new Surveyed();
     this.size = this.navParams.get("size");
@@ -95,14 +96,43 @@ export class EncuestaPage {
 
   //slides to next item
   goNext(){
+    //Checar pregunta antes de avanzar 
     this.contador++;
     this.slides._isEnd
     if(this.contador > this.size){
       this.finalizarEncuesta();
     }else{
-      this.slides.lockSwipes(false);
-      this.slides.slideNext();
-      this.slides.lockSwipes(true);
+      //Guarda siguiente pregunta
+      const pregunta = this.survey.questions[this.contador-1];
+
+      //Si la siguiente pregunta tiene condiciones
+      if(pregunta.conditions.length > 0) {
+        this.slides.lockSwipes(false);
+        this.slides.slideTo(this.contador);
+        this.slides.lockSwipes(true);
+      }else{
+        if (pregunta.compounds.length > 0) {
+          //Es pregunta compuesta
+          pregunta.compounds.forEach(comp => {
+            const preguntaDepende = this.answers.find(x => x.questionID == comp.questionID);
+            if(comp.rules[0].value == preguntaDepende.value.text){
+              this.slides.lockSwipes(false);
+              this.slides.slideTo(this.contador);
+              this.slides.lockSwipes(true);
+            }else{
+              this.goNext();
+            }
+          });
+
+        } else {
+          //No tiene condiciones ni es compuesta solo avanza
+          this.slides.lockSwipes(false);
+          this.slides.slideTo(this.contador);
+          this.slides.lockSwipes(true);
+
+        }
+        
+      }
     }
     this.appData.loading = false;
   }
@@ -130,7 +160,7 @@ export class EncuestaPage {
     console.log(this.answers);
     
 
-    this.geolocation.getCurrentPosition().then((resp) => {
+    /*this.geolocation.getCurrentPosition().then((resp) => {
       this.auxLat.id_pollster = this.answers[0].id_pollster;
       this.auxLng.id_pollster = this.answers[0].id_pollster;
       this.auxLat.id_survey = this.answers[0].id_survey;
@@ -153,7 +183,7 @@ export class EncuestaPage {
       this.answers.push(this.auxLng);
      }).catch((error) => {
        console.log('Error getting location', error);
-     });
+     });*/
     
     this.answers.forEach(el => {
       if(el == undefined){

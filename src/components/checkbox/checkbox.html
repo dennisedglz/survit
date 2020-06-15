@@ -1,10 +1,10 @@
 <ion-content>
-    <p class="pregunta" *ngIf="question.name != ''" >{{question.name}}</p>
-    <p class="subpregunta" *ngIf="question.question != ''">{{question.question}}</p>
-    <div class="respuestas" *ngIf="question.answers">
-      <ion-item *ngFor="let answer of question.answers; index as i;">
-        <ion-label>{{answer}}</ion-label>
-        <ion-checkbox color="secondary" (ionChange)="updateCheckbox($event, answer)"></ion-checkbox>
+    <p class="pregunta" *ngIf="question.text != ''" >{{question.text}}</p>
+    <p class="subpregunta" *ngIf="question.help != ''">{{question.help}}</p>
+    <div class="respuestas" *ngIf="question.options">
+      <ion-item *ngFor="let answer of question.options; index as i;">
+        <ion-label>{{answer.text}}</ion-label>
+        <ion-checkbox color="secondary" (ionChange)="updateCheckbox($event, answer.text)"></ion-checkbox>
       </ion-item>
 
     </div>

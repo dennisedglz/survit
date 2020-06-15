@@ -1,10 +1,10 @@
 <ion-content>
-  <p class="pregunta" *ngIf="question.name != ''" >{{question.name}}</p>
-  <p class="subpregunta" *ngIf="question.question != ''">{{question.question}}</p>
-  <div class="respuestas" *ngIf="question.answers">
+  <p class="pregunta" *ngIf="question.text != ''" >{{question.questionId}} {{question.text}}</p>
+  <p class="subpregunta" *ngIf="question.question != ''">{{question.help}}</p>
+  <div class="respuestas" *ngIf="question.options">
     <ion-list radio-group [(ngModel)]="value">
-        <ion-item *ngFor="let answer of question.answers" >
-            <ion-label>{{answer}}</ion-label>
+        <ion-item *ngFor="let answer of question.options" >
+            <ion-label>{{answer.text}}</ion-label>
             <ion-radio [value]="answer" color="secondary"></ion-radio>
           </ion-item>
     </ion-list>

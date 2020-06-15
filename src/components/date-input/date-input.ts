@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Answer } from '../../models/answers';
-import { Simple } from '../../models/questions';
+import { Simple, Question } from '../../models/questions';
 import { AlertController } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 
@@ -16,7 +16,7 @@ import { AppDataProvider } from '../../providers/app-data/app-data';
 })
 export class DateInputComponent {
   @Output() clickSwipe = new EventEmitter<Answer>();
-  @Input() question : Simple;
+  @Input() question : Question;
   public value: string;
   public answer: Answer;
   
@@ -34,6 +34,7 @@ export class DateInputComponent {
   ngOnInit(){
     this.answer.id_survey = this.appData.currentSurvey;
     this.answer.id_question = this.question._id;
+    this.answer.questionID = this.question.questionID;
     this.answer.id_user = this.appData.surveyedID;
     this.answer.id_pollster = this.appData.userID;
     console.log(this.answer);

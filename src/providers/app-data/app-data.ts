@@ -10,12 +10,13 @@ export class AppDataProvider {
   public currentSurvey: number | string;
   public validSurveyed: boolean;
   public onSurvey:boolean;
+  public compounds: Array<string>;
 
   constructor() {
     this.loading = false;
     this.userID = "";
     this.onSurvey = false;
-
+    this.compounds = [];
   }
 
 

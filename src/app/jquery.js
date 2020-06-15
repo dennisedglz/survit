@@ -1,130 +1,876 @@
-/* Esto es un comentario en jQuery */
-//Esto es un comentario en jQuery
-//El browser no va a hacer nada con los comentarios. Los ignora. Son para que como programador recuerdes más rápido que hace cada función o que guardas en cada variable
-
-
-
-/* La primera función que usas siempre es esta */
-$(document).ready(function() {
+{
+    "text":"Encuetas cargadas con Éxito",
+    "data":[
+       {
+          "isDeleted":false,
+          "_id":"5ea272f62ec58500179ec2a4",
+          "title":"Estudio ExxonMobil 2019",
+          "message":"Buenos días/tardes. Mi nombre es ____ y represento a Ipsos, una empresa que se dedica a la realización de estudios de mercado y opinión pública. Actualmente estamos realizando un estudio de mercado y estamos entrevistando a personas como usted. Le garantizo que las respuestas que nos proporcione serán confidenciales y que se utilizarán únicamente con fines estadísticos.",
+          "creation_date":"24-4-2020",
+          "creation_time":"05:02:46",
+          "start_date":"2020-04-23",
+          "end_date":"2020-05-20",
+          "picture":true,
+          "audio":true,
+          "location":true,
+          "questions":[
+             {
+                "options":[
+                   {
+                      "values":[
  
-    //Todo el código que quieres agregar va dentro de esto. Lo que hace es asegurarse de agregar las funciones que escribas aquí a los elementos de HTML una vez que existan. Lo que esta función le dice al browser es que espere a que el documento de HTML esté listo para correr todo lo que agregues aqui. 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2a6",
+                      "text":"Manufactura de productos de plastico"
+                   },
+                   {
+                      "values":[
  
-});
-
-
-
-/* La función que tienes para aparecer submenús es la siguiente, te la explico por partes */
-$('.desplegar-submenu-resp').click(function(){
-    var id = $(this).attr('href');
-    $(id).fadeToggle();
-    return false;
-});
-
-/****************************************************************************************************************************************/
-/* Lo primero que tienes que hacer es decidir a que elemento le vas a agregar la función. Es decir a que botón le tienes que dar clic para que se despliegue el submenú. El botón tiene la clase .desplegar-submenu-resp, entonces la forma de "tomar" el botón que tienes en tu página sería la siguiente */
-
-$('.desplegar-submenu-resp') 
-
-//Tienes varios botones con la misma clase entonces agarra todos los botones con esa clase y a cada uno le agrega lo que sea que agregues después
-
-//Para agarrar cualquier elemento realmente lo unico que necesitas es agregar el nombre del elemento (id, clase o etiqueta) dentro de $()
-//Ejemplos:
-
-$('#logo') //Obtiene el elemento HTML con este id
-$('.desplegar-submenu-resp') //Obtiene todos los elementos de HTML con esta clase
-$('buttons') //Obtiene todos los elementos <button></button> que tengas en el HTML
-
-/****************************************************************************************************************************************/
-/* Ya que tienes el elemento (o los elementos) al cual agregar la función debes decidir el tipo de interacción que el usuario tiene que tener con ese elemento para que se realice la función que quieres, en este caso aparecer el submenú. Lo más común es que sea al click. Lo cual se hace de la siguiente manera: */
-
-$('.desplegar-submenu-resp').click(); //Después del elemento agregas un punto seguido de la interacción, en este caso es el click pero pueden ser varias y al final abres y cierras parentesis y el punto y coma, para indicar que es el final de la instrucción
-
-//Después te explico otras funciones que puedes agregar en lugar del click, no son tan comunes
-
-
-/****************************************************************************************************************************************/
-
-/* Ya que tienes el elemento y la interacción para disparar la función lo siguiente es agregar la función, dentro de la cual puedes hacer practicamente lo que quieras. Mostrar y ocultar elementos, cambiar clases, cambiar el contenido de HTML de cualquier elemento, cambiar estilos, etc. Independientemente de lo que quieras hacer siempre debes agregar una función, con la siguiente sintaxis */
-
-function(){
-    //Aqui va el código para lo que quieras hacer, en este caso es desplegar el submenú
-} 
-//Esta función va dentro de los parentesis de la interacción, en este caso el click, lo cual se vería algo así
-.click(function(){
-
-})
-
-//Junto con el elemento al cual se le agrega la función queda así:
-$('.desplegar-submenu-resp').click(function(){
-    
-});
-
-
-/****************************************************************************************************************************************/
-/* La segunda parte sería agregar el código para aparecer el submenú. Lo más sencillo sería llamar el elemento al que queremos aparecer (ya sea por id o por clase) y agregar la instrucción de aparecer y/o desaparecer */
-.fadeIn(); //Aparece un elemento
-.fadeOut(); //Desaparece un elemento
-.fadeToggle(); //Si el elemento esta oculto lo aparece, si el elemento esta visible lo desaparece.
-
-//Esto se haría así:
-$('#submenu-hombres-responsivo').fadeIn();
-
-/* Sin embargo hay que recordar que la función se esta agregando a los tres botones (HOMBRE, MUJER, DEPORTES). Entonces cada que dieramos click en cualquiera de ellos lo que haría es desplegar el submenú de la sección de hombres, en lugar de desplegar el submenú especifico para cada sección. Para resolver esto es importante notar que tenemos acceso al botón completo de html, y dicho botón tiene un atributo llamado href al que podemos acceder desde jQuery. La idea es mandar en el href de cada botón el id del submenú que se quiere desplegar, para que se despliegue solamente el submenú correspondiente. */
-
-//HTML con los href correspondientes al ID de cada submenú: 
-<a class="desplegar-submenu-resp" href="#submenu-hombres-responsivo">HOMBRES</a>
-<a class="desplegar-submenu-resp" href="#submenu-mujeres-responsivo">MUJERES</a>
-<a class="desplegar-submenu-resp" href="#submenu-deportes-responsivo">DEPORTES</a>
-
-
-//El código en jQuery para obtener el href de cada botón, que es el mismo al ID del submenú sería el siguiente
-
-$('.desplegar-submenu-resp').click(function(){
-     $(this).attr('href');
-     //Algo que no te había mencionado es que $(this) dentro de la función lo que hace es agarrar el elemento especifico al que le diste click, entonces si le diste click al botón que dice deportes $(this) sería el botón DEPORTES. Para obtener especificamente el ID, el cual estamos agregando al href lo que se hace es agregar el .attr('href') después de $(this)
-
-     //Una traducción sería: De este botón (al que le diste click) traeme el atributo href, lo cual te regresaría #submenu-deportes-responsivo
-}); 
-
-/* Con el código de arriba logramos acceder al ID #submenu-deportes-responsivo, lo que quiere decir que ahora tenemos el ID especifico del submenu que queremos desplegar/ocultar. Para hacer esto lo que tendríamos que hacer sería: */
-$('#submenu-deportes-responsivo').fadeToggle(); 
-
-/* Sin embargo para poder pasar el valor que regresa  
-$(this).attr('href');  ->'#submenu-deportes-responsivo' 
-dentro de $(aqui).fadeToggle(); 
-es necesario que utilicemos una variable.
-*/
-/* Una variable es una parte de memoria a la cual puedes acceder por un nombre, que tu asignas, y puedes guardar cualquier valor para utilizarlo después */
-/*Para guardarlo en una variable primero necesitamos saber como declarar una variable. Es realmente sencillo. Solamente es la palabra var seguido del nombre de la variable. */
-var id;
-/* Una vez declarada la variable puedes asignarle cualquier valor. El valor que queremos asignar es el href del botón, el cual es el mismo que el ID del submenú que vamos a desplegar/ocultar */
-var id;
-id =  $(this).attr('href');
-//Que viene siendo lo mismo que esto:
-var id =  $(this).attr('href'); 
-
-/* En nuestra variable ID ya tenemos guardado el href o el id del submenú, en este caso #submenu-deportes-responsivo */
-var id = $(this).attr('href') =  #submenu-deportes-responsivo
-
-/* Nuestro código completo se vería algo así hasta ahora */
-$('.desplegar-submenu-resp').click(function(){
-    var id = $(this).attr('href');
-});
-
-/* Para hacer que aparezca el elemento del ID, ahora guardado en la variable, mandamos llamar el elemento desde jquery junto con la función de aparecer/ocultar */
-$(id).fadeToggle();
-
-
-/* Lo cual se vería así: */
-$('.desplegar-submenu-resp').click(function(){
-    var id = $(this).attr('href');
-    $(id).fadeToggle();
-    
-});
-
-/* El return false; que se agrega al final es para evitar que haga las funciones que por default tiene el anchor, que sería mandar a otra página. */
-$('.desplegar-submenu-resp').click(function(){
-    var id = $(this).attr('href');
-    $(id).fadeToggle();
-    return false;
-});
+                      ],
+                      "_id":"5ea272f62ec58500179ec2a7",
+                      "text":"Minería"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2a8",
+                      "text":"Construcción/Acarreo de materiales/ venta de maquinaria"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2a9",
+                      "text":"Automotriz"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2aa",
+                      "text":"Manufactura en general"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2ab",
+                      "text":"Otro"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f62ec58500179ec2a5",
+                "questionID":"F1",
+                "text":"¿La empresa para la cual trabaja tiene entre sus principales actividades alguna de las siguientes industrias?",
+                "help":"Respuesta única",
+                "type":"Radios"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2ad",
+                      "text":"0 empleados / persona física o profesionista independiente"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2ae",
+                      "text":"1 a 10 empleados"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2af",
+                      "text":"11 a 50 empleados"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2b0",
+                      "text":"51 a 250 empleados"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2b1",
+                      "text":"Más de 250 empleados"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f62ec58500179ec2ac",
+                "questionID":"F4",
+                "text":"Incluyendose usted, ¿Con cuantos empleados cuenta aproximadamente la empresa en que trabaja?",
+                "help":"Clasificar de acuerdo al número de empleados",
+                "type":"Radios"
+             },
+             {
+                "options":[
+ 
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f62ec58500179ec2b2",
+                "questionID":"C1",
+                "text":"Específicamente, ¿Qué actividad se realiza o qué se produce en la empresa donde trabaja?",
+                "help":"Breve respuesta a las actividades realizadas",
+                "type":"Texto"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2b4",
+                      "text":"Carbón"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2b5",
+                      "text":"Mineral no metálico"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2b6",
+                      "text":"mineral metálico"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2b7",
+                      "text":"Otro"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2b8",
+                      "text":null
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+                   {
+                      "rules":[
+                         {
+                            "_id":"5ea272f62ec58500179ec2ba",
+                            "value":"Minería"
+                         }
+                      ],
+                      "_id":"5ea272f62ec58500179ec2b9",
+                      "questionID":"F1"
+                   }
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f62ec58500179ec2b3",
+                "questionID":"C2",
+                "text":"¿Qué tipo de operación minera lleva a cabo la empresa?",
+                "help":"Respuesta múltiple. ",
+                "type":"Múltiple"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2bc",
+                      "text":"Equipo fijo industrial/estacionario (líneas de producción, ensambladoras, etc))"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2bd",
+                      "text":"Equipo móvil o pesado fuera de carretera (Excavadoras, camiones, retroexcavadoras, cargadores, etc)"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2be",
+                      "text":"Ambos tipos de equipos"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2bf",
+                      "text":"Ninguno de los dos tipos"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f62ec58500179ec2bb",
+                "questionID":"C4",
+                "text":"Para qué tipo de equipos utiliza lubricantes hidráulicos la empresa donde trabaja?",
+                "help":"Respuesta única. Leer todas las opciones",
+                "type":"Radios"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c1",
+                      "text":"Mobil"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c2",
+                      "text":"Shell"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c3",
+                      "text":"Total"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c4",
+                      "text":"Chevron"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c5",
+                      "text":"Mexicana de lubricantes"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c6",
+                      "text":"Akron"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c7",
+                      "text":"Raloy"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c8",
+                      "text":"Quaker"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2c9",
+                      "text":"Roshfrans"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2ca",
+                      "text":"Castrol"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2cb",
+                      "text":"Otro"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2cc",
+                      "text":"Otro"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+                   {
+                      "rules":[
+                         {
+                            "_id":"5ea272f62ec58500179ec2ce",
+                            "value":"Equipo fijo industrial/estacionario (líneas de producción, ensambladoras, etc))"
+                         }
+                      ],
+                      "_id":"5ea272f62ec58500179ec2cd",
+                      "questionID":"C4"
+                   },
+                   {
+                      "rules":[
+                         {
+                            "_id":"5ea272f62ec58500179ec2d0",
+                            "value":"Ambos tipos de equipos"
+                         }
+                      ],
+                      "_id":"5ea272f62ec58500179ec2cf",
+                      "questionID":"C4"
+                   }
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f62ec58500179ec2c0",
+                "questionID":"P1",
+                "text":"Me puede decir todas las marcas de lubricantes hidráulicos que conoce para equipo fijo industrial/estacionario?",
+                "help":"Identificar primera mencion",
+                "type":"Múltiple"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2d2",
+                      "text":"Precio"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2d3",
+                      "text":"Calidad/Eficiencia"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2d4",
+                      "text":"Durabilidad"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2d5",
+                      "text":"Marca"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f62ec58500179ec2d6",
+                      "text":"Servicios adicionales"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f62ec58500179ec2d1",
+                "questionID":"P2",
+                "text":"De los cinco atributos que le voy a mencionar ordenelos de mayor a menor importancia con respecto a lo que toma en cuenta para decidir adquirir o comprar un lubricante hidrocálido",
+                "help":"Ordenas según orden de importancia",
+                "type":"Múltiple"
+             }
+          ],
+          "users":[
+             {
+                "_id":"5ea273322ec58500179ec30b",
+                "userID":"5ea273272ec58500179ec30a",
+                "name":"Angélica D Díaz Gonzalez",
+                "userType":"Encuestador"
+             }
+          ],
+          "__v":0
+       },
+       {
+          "isDeleted":false,
+          "_id":"5ea272f72ec58500179ec2d7",
+          "title":"Estudio ExxonMobil 2019",
+          "message":"Buenos días/tardes. Mi nombre es ____ y represento a Ipsos, una empresa que se dedica a la realización de estudios de mercado y opinión pública. Actualmente estamos realizando un estudio de mercado y estamos entrevistando a personas como usted. Le garantizo que las respuestas que nos proporcione serán confidenciales y que se utilizarán únicamente con fines estadísticos.",
+          "creation_date":"24-4-2020",
+          "creation_time":"05:02:47",
+          "start_date":"2020-04-23",
+          "end_date":"2020-05-20",
+          "picture":true,
+          "audio":true,
+          "location":true,
+          "questions":[
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2d9",
+                      "text":"Manufactura de productos de plastico"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2da",
+                      "text":"Minería"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2db",
+                      "text":"Construcción/Acarreo de materiales/ venta de maquinaria"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2dc",
+                      "text":"Automotriz"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2dd",
+                      "text":"Manufactura en general"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2de",
+                      "text":"Otro"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f72ec58500179ec2d8",
+                "questionID":"F1",
+                "text":"¿La empresa para la cual trabaja tiene entre sus principales actividades alguna de las siguientes industrias?",
+                "help":"Respuesta única",
+                "type":"Radios"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2e0",
+                      "text":"0 empleados / persona física o profesionista independiente"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2e1",
+                      "text":"1 a 10 empleados"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2e2",
+                      "text":"11 a 50 empleados"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2e3",
+                      "text":"51 a 250 empleados"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2e4",
+                      "text":"Más de 250 empleados"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f72ec58500179ec2df",
+                "questionID":"F4",
+                "text":"Incluyendose usted, ¿Con cuantos empleados cuenta aproximadamente la empresa en que trabaja?",
+                "help":"Clasificar de acuerdo al número de empleados",
+                "type":"Radios"
+             },
+             {
+                "options":[
+ 
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f72ec58500179ec2e5",
+                "questionID":"C1",
+                "text":"Específicamente, ¿Qué actividad se realiza o qué se produce en la empresa donde trabaja?",
+                "help":"Breve respuesta a las actividades realizadas",
+                "type":"Texto"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2e7",
+                      "text":"Carbón"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2e8",
+                      "text":"Mineral no metálico"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2e9",
+                      "text":"mineral metálico"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2ea",
+                      "text":"Otro"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2eb",
+                      "text":null
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+                   {
+                      "rules":[
+                         {
+                            "_id":"5ea272f72ec58500179ec2ed",
+                            "value":"Minería"
+                         }
+                      ],
+                      "_id":"5ea272f72ec58500179ec2ec",
+                      "questionID":"F1"
+                   }
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f72ec58500179ec2e6",
+                "questionID":"C2",
+                "text":"¿Qué tipo de operación minera lleva a cabo la empresa?",
+                "help":"Respuesta múltiple. ",
+                "type":"Múltiple"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2ef",
+                      "text":"Equipo fijo industrial/estacionario (líneas de producción, ensambladoras, etc))"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f0",
+                      "text":"Equipo móvil o pesado fuera de carretera (Excavadoras, camiones, retroexcavadoras, cargadores, etc)"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f1",
+                      "text":"Ambos tipos de equipos"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f2",
+                      "text":"Ninguno de los dos tipos"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f72ec58500179ec2ee",
+                "questionID":"C4",
+                "text":"Para qué tipo de equipos utiliza lubricantes hidráulicos la empresa donde trabaja?",
+                "help":"Respuesta única. Leer todas las opciones",
+                "type":"Radios"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f4",
+                      "text":"Mobil"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f5",
+                      "text":"Shell"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f6",
+                      "text":"Total"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f7",
+                      "text":"Chevron"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f8",
+                      "text":"Mexicana de lubricantes"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2f9",
+                      "text":"Akron"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2fa",
+                      "text":"Raloy"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2fb",
+                      "text":"Quaker"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2fc",
+                      "text":"Roshfrans"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2fd",
+                      "text":"Castrol"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2fe",
+                      "text":"Otro"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec2ff",
+                      "text":"Otro"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+                   {
+                      "rules":[
+                         {
+                            "_id":"5ea272f72ec58500179ec301",
+                            "value":"Equipo fijo industrial/estacionario (líneas de producción, ensambladoras, etc))"
+                         }
+                      ],
+                      "_id":"5ea272f72ec58500179ec300",
+                      "questionID":"C4"
+                   },
+                   {
+                      "rules":[
+                         {
+                            "_id":"5ea272f72ec58500179ec303",
+                            "value":"Ambos tipos de equipos"
+                         }
+                      ],
+                      "_id":"5ea272f72ec58500179ec302",
+                      "questionID":"C4"
+                   }
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f72ec58500179ec2f3",
+                "questionID":"P1",
+                "text":"Me puede decir todas las marcas de lubricantes hidráulicos que conoce para equipo fijo industrial/estacionario?",
+                "help":"Identificar primera mencion",
+                "type":"Múltiple"
+             },
+             {
+                "options":[
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec305",
+                      "text":"Precio"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec306",
+                      "text":"Calidad/Eficiencia"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec307",
+                      "text":"Durabilidad"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec308",
+                      "text":"Marca"
+                   },
+                   {
+                      "values":[
+ 
+                      ],
+                      "_id":"5ea272f72ec58500179ec309",
+                      "text":"Servicios adicionales"
+                   }
+                ],
+                "headers":[
+ 
+                ],
+                "compounds":[
+ 
+                ],
+                "conditions":[
+ 
+                ],
+                "_id":"5ea272f72ec58500179ec304",
+                "questionID":"P2",
+                "text":"De los cinco atributos que le voy a mencionar ordenelos de mayor a menor importancia con respecto a lo que toma en cuenta para decidir adquirir o comprar un lubricante hidrocálido",
+                "help":"Ordenas según orden de importancia",
+                "type":"Múltiple"
+             }
+          ],
+          "users":[
+ 
+          ],
+          "__v":0
+       }
+    ]
+ }

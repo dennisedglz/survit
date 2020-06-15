@@ -4,7 +4,8 @@ export class Answer {
      public id_user: string; //Se genera en BE, tengo que mandarlo pedir antes de enviar las respuestas
      public validID: boolean;
      public id_pollster: number | string; //Encuestador
-     public value: string;
+     public value;
+     public questionID: string;
      constructor(){
           this.id_survey = null;
           this.id_question = null;

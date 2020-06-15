@@ -29,11 +29,14 @@ export class LoginPage {
   login() {
     this.appData.loading = true;
     this.api.login(this.username, this.password).then(data => {
-      console.log(data);
       if(data){
         this.appData.loading = false;
-        this.appData.userID = data[data.length-1];
-        this.navCtrl.setRoot(HomePage);
+        this.appData.userID = data._id;
+        if(data.active && !data.isDeleted) {
+          this.navCtrl.setRoot(HomePage);
+        } else {
+          this.alertPrv.errorLogin();
+        }
       }else{
         this.appData.loading = false;
         this.alertPrv.errorLogin();

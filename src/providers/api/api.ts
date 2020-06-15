@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstants } from '../../app/app.constants';
-import { Survey } from '../../models/survey';
+import { Survey, SurveyResponse } from '../../models/survey';
+import { LoginResponse } from '../../models/login';
 
 
 @Injectable()
@@ -22,7 +23,7 @@ export class ApiProvider {
     const url = `${AppConstants.LoginURL}?username=${username}&password=${password}`;
     var headers = new HttpHeaders().set('Content-Type', 'application/json');
     headers.set('Accept', 'application/json');
-    return this.coreGet<string[]>(url, headers);
+    return this.coreGet<LoginResponse>(url, headers);
 
   }
 
@@ -31,7 +32,7 @@ export class ApiProvider {
     const url = AppConstants.GetEncuestasURL;
     var headers = new HttpHeaders().set('Content-Type', 'application/json');
     headers.set('Accept', 'application/json');
-    return this.coreGet<Survey[]>(url, headers);
+    return this.coreGet<SurveyResponse>(url, headers);
     
   }
 

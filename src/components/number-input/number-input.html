@@ -1,6 +1,6 @@
 <ion-content>
-  <p class="pregunta" *ngIf="question.name != ''" >{{question.name}}</p>
-  <p class="subpregunta" *ngIf="question.question != ''">{{question.question}}</p>
+  <p class="pregunta" *ngIf="question.text != ''" >{{question.text}}</p>
+  <p class="subpregunta" *ngIf="question.help != ''">{{question.help}}</p>
   <div class="respuestas">
     <ion-item>
       <ion-input [(ngModel)]="value" type="number"></ion-input>

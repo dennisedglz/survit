@@ -15,11 +15,18 @@
   <ion-slides #slides>
  
     <ion-slide *ngIf="survey.welcome_message != ''" >
-      <just-text [message]="survey.welcome_message" (clickSwipe)="onSwipeEmittedNotAns($event)"></just-text>
+      <just-text [message]="survey.message" (clickSwipe)="onSwipeEmittedNotAns($event)"></just-text>
     </ion-slide>
 
     <ion-slide *ngFor="let question of survey.questions">
-      <simple-input *ngIf="question.category != '' && (question.category == 'Simple' || question.category == 'Texto')" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></simple-input>
+
+     <simple-input *ngIf="question.type != '' && (question.type == 'Simple' || question.type == 'Texto')" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></simple-input>
+
+      <checkbox2 *ngIf="question?.type == 'Radios'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></checkbox2>
+
+      <checkbox *ngIf="question.type != '' && question.type == 'Múltiple'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></checkbox>
+
+     <!-- <simple-input *ngIf="question.category != '' && (question.category == 'Simple' || question.category == 'Texto')" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></simple-input>
 
       <checkbox *ngIf="question.category != '' && question.category == 'Múltiple'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></checkbox>
 
@@ -29,7 +36,7 @@
       
       <date-input *ngIf="question.category != '' && question.category == 'Fecha'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></date-input>
       
-      <tabla *ngIf="question.category != '' && question.category == 'Tabla'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></tabla>
+      <tabla *ngIf="question.category != '' && question.category == 'Tabla'" [question]="question" (clickSwipe)="onSwipeEmitted($event)"></tabla>-->
     </ion-slide>
 
 
